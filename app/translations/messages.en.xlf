@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="head_title_missing">
+                <source>head_title_missing</source>
+                <target>Missing!</target>
+            </trans-unit>
+            <trans-unit id="head_title_wallet">
+                <source>head_title_wallet</source>
+                <target>Your wallet</target>
+            </trans-unit>
+
+            <trans-unit id="label_actions">
+                <source>label_actions</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="label_balance">
+                <source>label_balance</source>
+                <target>Balance</target>
+            </trans-unit>
+            <trans-unit id="label_category">
+                <source>label_category</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="label_currency">
+                <source>label_currency</source>
+                <target>Currency</target>
+            </trans-unit>
+            <trans-unit id="label_empty_list">
+                <source>label_empty_list</source>
+                <target>Empty list!</target>
+            </trans-unit>
+            <trans-unit id="label_id">
+                <source>label_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="label_name">
+                <source>label_name</source>
+                <target>Wallet name</target>
+            </trans-unit>
+            <trans-unit id="label_operation_name">
+                <source>label_operation_name</source>
+                <target>Operation name</target>
+            </trans-unit>
+            <trans-unit id="label_operation_value">
+                <source>label_operation_value</source>
+                <target>Value</target>
+            </trans-unit>
+            <trans-unit id="label_operation_time">
+                <source>label_operation_time</source>
+                <target>Added</target>
+            </trans-unit>
+            <trans-unit id="label_tags">
+                <source>label_tags</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="label_view">
+                <source>label_view</source>
+                <target>View</target>
+            </trans-unit>
+            <trans-unit id="label_view_title">
+                <source>label_view_title</source>
+                <target>View this wallet!</target>
+            </trans-unit>
+            <trans-unit id="label_wallet_not_found">
+                <source>label_wallet_not_found</source>
+                <target>That wallet does not exist!</target>
+            </trans-unit>
+
+            <trans-unit id="return_to_wallet_list">
+                <source>return_to_wallet_list</source>
+                <target>Return to your wallet list</target>
+            </trans-unit>
+            <trans-unit id="return_to_wallet_list_title">
+                <source>return_to_wallet_list_title</source>
+                <target>Go back to the wallet list!</target>
+            </trans-unit>
+
+            <trans-unit id="title_wallet">
+                <source>title_wallet</source>
+                <target>Your wallet</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_list">
+                <source>title_wallet_list</source>
+                <target>Your wallet list</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
