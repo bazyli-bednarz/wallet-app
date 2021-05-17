@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_operations_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title_operations_list'|trans }}</h1>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'operation.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_name'|trans, 'operation.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_time'|trans, 'operation.time') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_value'|trans, 'operation.value') }}</th>
+                <th>{{ 'label_category'|trans }}</th>
+                <th>{{ 'label_actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for operation in pagination.items %}
+                <tr>
+                    <td>{{ operation.id }}</td>
+                    <td>{{ operation.name }}</td>
+                    <td>{{ operation.time|format_date('long') }}</td>
+                    <td>{{ operation.value }}</td>
+                    <td>{{ operation.category.name }}</td>
+                    <td>
+                        <a href="{{ url('operation_show', {id: operation.id}) }}" title="{{ 'action_view'|trans }}">
+                            {{ 'action_view'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+
+    {% else %}
+        <p>
+            {{ 'message_empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
