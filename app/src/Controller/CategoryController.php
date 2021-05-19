@@ -6,12 +6,15 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 
 /**
  * Class CategoryController.
@@ -23,11 +26,11 @@ class CategoryController extends AbstractController
     /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\CategoryRepository        $categoryRepository Category repository
-     * @param \Knp\Component\Pager\PaginatorInterface   $paginator          Paginator
+     * @param Request            $request            HTTP request
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param PaginatorInterface $paginator          Paginator
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @Route(
      *     "/",
@@ -52,9 +55,9 @@ class CategoryController extends AbstractController
     /**
      * Show action.
      *
-     * @param \App\Entity\Category $category Category entity
+     * @param Category $category Category entity
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @Route(
      *     "/{id}",
@@ -68,6 +71,43 @@ class CategoryController extends AbstractController
         return $this->render(
             'category/show.html.twig',
             ['category' => $category]
+        );
+    }
+
+    /**
+     * Create new category action.
+     *
+     * @param Request            $request            HTTP Request
+     * @param CategoryRepository $categoryRepository Category repository
+     *
+     * @return Response
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     *
+     * @Route(
+     *     "/create",
+     *     methods={"GET", "POST"},
+     *     name="category_create",
+     * )
+     */
+    public function create(Request $request, CategoryRepository $categoryRepository): Response
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categoryRepository->save($category);
+
+            $this->addFlash('success', 'message_created_successfully');
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->render(
+            'category/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 }

@@ -1,7 +1,8 @@
 <?php
 /**
- * Category entity
+ * Category entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -10,7 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Category
+ * Class Category.
  *
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @ORM\Table(name="categories")
@@ -34,13 +35,16 @@ class Category
      */
     private $operations;
 
+    /**
+     * Category constructor.
+     */
     public function __construct()
     {
         $this->operations = new ArrayCollection();
     }
 
     /**
-     * Get category ID
+     * Get category ID.
      *
      * @return int|null ID
      */
@@ -50,7 +54,7 @@ class Category
     }
 
     /**
-     * Get category name
+     * Get category name.
      *
      * @return string|null Name
      */
@@ -60,7 +64,7 @@ class Category
     }
 
     /**
-     * Set category name
+     * Set category name.
      *
      * @param string $name Name
      */
@@ -77,6 +81,11 @@ class Category
         return $this->operations;
     }
 
+    /**
+     * Add operation.
+     *
+     * @return $this
+     */
     public function addOperation(Operation $operation): self
     {
         if (!$this->operations->contains($operation)) {
@@ -87,6 +96,11 @@ class Category
         return $this;
     }
 
+    /**
+     * Remove operation.
+     *
+     * @return $this
+     */
     public function removeOperation(Operation $operation): self
     {
         if ($this->operations->removeElement($operation)) {

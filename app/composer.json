@@ -1,5 +1,5 @@
 {
-    "name": "wallet",
+    "name": "bazyli-bednarz/wallet-app",
     "description": "Simple personal wallet app built with PHP, Symfony, Twig, HTML, CSS and JS.",
     "type": "project",
     "license": "proprietary",

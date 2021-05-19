@@ -33,6 +33,96 @@
     transform: rotate(360deg);
 }
 
+.main {
+    max-width: 1920px;
+    margin: auto;
+    padding: 2rem;
+}
+
 .main h1{
     padding: 2rem;
+}
+.add-item {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.add-item:hover {
+    color: #006bff;
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0; display: none; visibility: hidden;}
+}
+@-webkit-keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0; display: none; visibility: hidden;}
+}
+
+.message-box {
+    z-index: 1111;
+    min-width: 300px;
+    max-width: 50vw;
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    animation: fadeOut 2s 1;
+    -webkit-animation: fadeOut 2s 1;
+    animation-delay: 2s;
+    -webkit-animation-delay: 3s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.message-box .alert{
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+}
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+}
+
+.home .box {
+    text-align: center;
+    width: 25%;
+    min-width: 300px;
+    height: 50vh;
+    min-height: 500px;
+    padding: 4rem !important;
+    margin: 0 2rem;
+}
+
+
+
+.home .box .icon i {
+    display: block;
+    font-size: min(max(8vw, 80px), 200px);
+    transition: 0.3s;
+    text-align: center;
+    color: goldenrod;
+}
+
+.home .box:hover i {
+    color: darkgoldenrod;
+    font-size: min(max(9vw, 90px), 220px);
+}
+
+.home .box p {
+    padding-top: 3rem;
+}
+
+.about i {
+    display: block;
+    font-size: min(max(8vw, 80px), 200px);
+    transition: 0.3s;
+    text-align: center;
+    color: goldenrod;
+    padding: 3rem;
 }

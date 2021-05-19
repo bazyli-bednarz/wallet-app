@@ -114,15 +114,23 @@ class Operation
         $this->value = $value;
     }
 
+    /**
+     * Getter for category containing operation.
+     *
+     * @return Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    /**
+     * Setter for category containing operation.
+     *
+     * @param Category|null $category Category
+     */
+    public function setCategory(?Category $category): void
     {
         $this->category = $category;
-
-        return $this;
     }
 }

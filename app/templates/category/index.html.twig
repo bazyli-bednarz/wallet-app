@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_category_list'|trans }}</h1>
+    <h1>{{ 'title_category_list'|trans }} <a class="add-item" href="{{ url('category_create') }}" title="action_category_create"><i class="fas fa-plus-circle"></i></a></h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">

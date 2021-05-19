@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_about'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title_about'|trans }}</h1>
+    <div class="about d-flex p-2 flex-column justify-content-center align-items-center flex-wrap">
+        <i class="far fa-id-card"></i>
+        <p>{{ 'about_description' }}</p>
+    </div>
+{% endblock %}

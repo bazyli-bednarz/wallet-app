@@ -9,6 +9,8 @@ use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 
 /**
  * Class CategoryRepository.
@@ -42,6 +44,20 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
+     * Save record in a database.
+     *
+     * @param Category $category Category entity
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(Category $category): void
+    {
+        $this->_em->persist($category);
+        $this->_em->flush();
+    }
+
+    /**
      * Query all records.
      *
      * @return QueryBuilder Query builder
@@ -55,9 +71,9 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      * Get or create new query builder.
      *
-     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
+     * @param QueryBuilder|null $queryBuilder Query builder
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
