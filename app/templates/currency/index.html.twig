@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_currency_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title_currency_list'|trans }}</h1>
+    {% if data is defined and data|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'label_id'|trans }}</th>
+                <th>{{ 'label_currency'|trans }}</th>
+                <th scope="col">
+                    {{ 'label_actions'|trans }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td><a href="{{ url('currency_show', {id: item.id}) }}" title="{{ 'label_view_title_currency'|trans }}">{{ 'label_view_currency'|trans }}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>
+            Empty list.
+        </p>
+    {% endif %}
+{% endblock  %}

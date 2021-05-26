@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'head_title_currency'|trans }} -
+    {% if item.name is defined %}
+        {{ item.name }}
+    {% else %}
+        {{ 'head_title_missing'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title_currency'|trans }}</h1>
+    {% if item is defined and item|length %}
+        <dl>
+            <dt>{{ 'label_id'|trans }}</dt>
+            <dd>{{ item.id }}</dd>
+            <dt>{{ 'label_currency'|trans }}</dt>
+            <dd>{{ item.name }}</dd>
+        </dl>
+
+    {% else %}
+        <p>
+            {{ 'label_currency_not_found'|trans }}
+        </p>
+    {% endif %}
+    <p>
+        <a href="{{ url('currency_index') }}" title="{{ 'return_to_currency_list_title'|trans }}">{{ 'return_to_currency_list'|trans }}</a>
+    </p>
+{% endblock %}
