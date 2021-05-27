@@ -126,3 +126,33 @@
     color: goldenrod;
     padding: 3rem;
 }
+
+.delete .fa-trash-alt {
+    color: red;
+}
+
+.delete:hover .fa-trash-alt {
+    color: darkred;
+}
+
+.edit .fa-edit {
+    color: green;
+}
+
+.edit:hover .fa-edit {
+    color: darkgreen;
+}
+
+table a:hover {
+    text-decoration: none;
+}
+
+.disabled {
+    pointer-events: none;
+    color: gray;
+}
+
+.disabled .fa-trash-alt {
+    color: gray;
+}
+

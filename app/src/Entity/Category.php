@@ -31,9 +31,15 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="category")
+     * @var
+     *
+     * @ORM\OneToMany(
+     *     targetEntity=Operation::class,
+     *     mappedBy="category",
+     *     fetch="EXTRA_LAZY",
+     * )
      */
-    private $operations;
+    private Collection $operations;
 
     /**
      * Category constructor.

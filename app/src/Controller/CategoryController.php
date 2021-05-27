@@ -10,6 +10,7 @@ use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -110,4 +111,99 @@ class CategoryController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
+    /**
+     * Edit category.
+     *
+     * @param Request $request
+     * @param Category $category
+     * @param CategoryRepository $categoryRepository
+     *
+     * @return Response
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/edit",
+     *     methods={"GET", "PUT"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="category_edit",
+     * )
+     *
+     */
+    public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category, ['method' => 'PUT']);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categoryRepository->save($category);
+
+            $this->addFlash('success', 'message_updated_successfully');
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->render(
+            'category/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'category' => $category,
+            ]
+        );
+    }
+
+    /**
+     * Delete category action.
+     *
+     * @param Request $request
+     * @param Category $category
+     * @param CategoryRepository $categoryRepository
+     *
+     * @return Response
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/delete",
+     *     methods={"GET", "DELETE"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="category_delete",
+     * )
+     */
+
+    public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    {
+
+        if ($category->getOperations()->count()) {
+            $this->addFlash('warning', 'message_category_contains_tasks');
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        $form = $this->createForm(FormType::class, $category, ['method' => 'DELETE']);
+        $form->handleRequest($request);
+
+        if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
+            $form->submit($request->request->get($form->getName()));
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categoryRepository->delete($category);
+            $this->addFlash('success', 'message_deleted_successfully');
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->render(
+            'category/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'category' => $category,
+            ]
+        );
+    }
+
 }

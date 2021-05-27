@@ -58,6 +58,20 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
+     * Delete category.
+     *
+     * @param Category $category
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete(Category $category): void
+    {
+        $this->_em->remove($category);
+        $this->_em->flush();
+    }
+
+    /**
      * Query all records.
      *
      * @return QueryBuilder Query builder

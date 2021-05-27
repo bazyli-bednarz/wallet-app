@@ -27,7 +27,13 @@
                     <td>{{ category.name }}</td>
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_view'|trans }}">
-                            {{ 'action_view'|trans }}
+                            {{ 'action_view'|trans }} <i class="far fa-eye"></i>
+                        </a>
+                        <a class="edit" href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit'|trans }}">
+                            {{ 'action_edit'|trans }} <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="delete{% if category.operations|length %} disabled{% endif %}" href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action_delete'|trans }}">
+                            {{ 'action_delete'|trans }} <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>
