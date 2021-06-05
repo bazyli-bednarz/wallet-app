@@ -1,161 +1,94 @@
 <?php
+
 /**
  * Wallet repository.
  */
-
 namespace App\Repository;
 
+use App\Entity\Wallet;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
+
 /**
- * Class WalletRepository.
+ * @method Wallet|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Wallet|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Wallet[]    findAll()
+ * @method Wallet[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class WalletRepository
+class WalletRepository extends ServiceEntityRepository
 {
     /**
-     * Data.
+     * Items per page.
      *
-     * @var array static array with data
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in app/config/config.yml.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
      */
-    private array $data = [
-        1 => [
-            'id' => 1,
-            'name' => 'Wallet 1',
-            'currency' => 'USD',
-            'balance' => 123000.12,
-            'operations' => [
-                [
-                    'id' => 1,
-                    'name' => 'Rent money',
-                    'time' => '2010-09-02 11:11:11',
-                    'value' => 1002.00,
-                    'category' => 'Job',
-                    'tags' => [
-                        'small_income',
-                        'free',
-                        'dummy',
-                    ],
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Job money',
-                    'time' => '2011-11-03 12:21:13',
-                    'value' => 11232.11,
-                    'category' => 'Job',
-                    'tags' => [
-                    ],
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'Stolen money',
-                    'time' => '2011-11-03 12:21:13',
-                    'value' => 112222.23,
-                    'category' => 'Job',
-                    'tags' => [
-                        'stolen',
-                    ],
-                ],
-            ],
-        ],
-        2 => [
-            'id' => 2,
-            'name' => 'Wallet 2',
-            'currency' => 'PLN',
-            'balance' => 100.00,
-            'operations' => [
-                [
-                    'id' => 1,
-                    'name' => 'Stock income',
-                    'time' => '2010-09-02 11:11:11',
-                    'value' => 1012.02,
-                    'category' => 'Stock',
-                    'tags' => [
-                        'small_income',
-                        'stock',
-                    ],
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'From granny',
-                    'time' => '2011-11-03 12:21:13',
-                    'value' => 110.11,
-                    'category' => 'Job',
-                    'tags' => [
-                        'granny',
-                        'free',
-                    ],
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'Groceries',
-                    'time' => '2011-11-03 12:21:13',
-                    'value' => -222.00,
-                    'category' => 'Expenses',
-                    'tags' => [
-                        'shopping',
-                    ],
-                ],
-            ],
-        ],
-        3 => [
-            'id' => 3,
-            'name' => 'Wallet 3',
-            'currency' => 'CHF',
-            'balance' => 1235.95,
-            'operations' => [
-                [
-                    'id' => 1,
-                    'name' => 'Tax fraud',
-                    'time' => '2010-09-02 11:11:11',
-                    'value' => 100000.11,
-                    'category' => 'Other',
-                    'tags' => [
-                        'stolen',
-                    ],
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Chess.com membership',
-                    'time' => '2011-11-03 12:21:13',
-                    'value' => -11232.04,
-                    'category' => 'Expenses',
-                    'tags' => [
-                        'chess',
-                        'subscription',
-                    ],
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'Stolen money',
-                    'time' => '2011-11-03 12:21:13',
-                    'value' => 112222.10,
-                    'category' => 'Job',
-                    'tags' => [
-                        'small_income',
-                        'stolen',
-                    ],
-                ],
-            ],
-        ],
-    ];
+    const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * Returns all wallets stored in database.
+     * WalletRepository constructor.
      *
-     * @return array|array[] Result
+     * @param ManagerRegistry $registry Manager registry
      */
-    public function findAll(): array
+    public function __construct(ManagerRegistry $registry)
     {
-        return $this->data;
+        parent::__construct($registry, Wallet::class);
     }
 
     /**
-     * Returns a single wallet identified by its ID.
+     * Save record in a database.
      *
-     * @param int $id Wallet ID
+     * @param Wallet $wallet Wallet entity
      *
-     * @return array Result
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
-    public function findById(int $id): ?array
+    public function save(Wallet $wallet): void
     {
-        return isset($this->data[$id]) && count($this->data) ? $this->data[$id] : null;
+        $this->_em->persist($wallet);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete wallet.
+     *
+     * @param Wallet $wallet
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete(Wallet $wallet): void
+    {
+        $this->_em->remove($wallet);
+        $this->_em->flush();
+    }
+
+    /**
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->orderBy('wallet.id', 'ASC');
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('wallet');
     }
 }

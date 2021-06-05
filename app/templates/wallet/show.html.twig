@@ -1,62 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'head_title_wallet'|trans }} -
-    {% if item.name is defined %}
-        {{ item.name }}
-    {% else %}
-        {{ 'head_title_missing'|trans }}
-    {% endif %}
+    {{ 'title_wallet_details'|trans({'%id%': wallet.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_wallet'|trans }}</h1>
-    {% if item is defined and item|length %}
-        <dl>
-            <dt>{{ 'label_name'|trans }}</dt>
-            <dd>{{ item.name }}</dd>
-            <dt>{{ 'label_currency'|trans }}</dt>
-            <dd>{{ item.currency }}</dd>
-            <dt>{{ 'label_balance'|trans }}</dt>
-            <dd><span class="balance">{{ item.balance }}</span> {{ item.currency }}</dd>
+    <h1>{{ 'title_wallet_details'|trans({'%id%': wallet.id|default('')}) }}</h1>
+    {% if wallet is defined and wallet|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label_id'|trans }}</dt>
+            <dd>{{ wallet.id }}</dd>
+            <dt>{{ 'label_wallet'|trans }}</dt>
+            <dd>{{  wallet.name }}</dd>
         </dl>
-
-        {% if item is defined and item.operations|length %}
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>{{ 'label_id'|trans }}</th>
-                    <th>{{ 'label_operation_name'|trans }}</th>
-                    <th>{{ 'label_operation_value'|trans }}</th>
-                    <th>{{ 'label_operation_time'|trans }}</th>
-                    <th>{{ 'label_category'|trans }}</th>
-                    <th>{{ 'label_tags'|trans }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for operation in item.operations %}
-                    <tr>
-                        <td>{{ operation.id }}</td>
-                        <td>{{ operation.name }}</td>
-                        <td>{{ operation.value }} {{ item.currency }}</td>
-                        <td>{{ operation.time }}</td>
-                        <td>{{ operation.category }}</td>
-                        <td>{{ operation.tags|join(', ') }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>
-                {{ 'label_empty_list'|trans }}
-            </p>
-        {% endif %}
+        <p>
+            <a href="{{ url('wallet_index') }}" title="{{ 'action_back_to_list'|trans }}">
+                {{ 'action_back_to_list'|trans }}
+            </a>
+        </p>
     {% else %}
         <p>
-            {{ 'label_wallet_not_found'|trans }}
+            {{ 'message_item_not_found'|trans }}
         </p>
     {% endif %}
-    <p>
-        <a href="{{ url('wallet_index') }}" title="{{ 'return_to_wallet_list_title'|trans }}">{{ 'return_to_wallet_list'|trans }}</a>
-    </p>
 {% endblock %}
