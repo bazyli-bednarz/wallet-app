@@ -7,6 +7,8 @@ namespace App\Repository;
 
 use App\Entity\Operation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -31,6 +33,8 @@ class OperationRepository extends ServiceEntityRepository
 
     /**
      * OperationRepository constructor.
+     *
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -38,7 +42,37 @@ class OperationRepository extends ServiceEntityRepository
     }
 
     /**
+     * Save record.
+     *
+     * @param Operation $operation
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(Operation $operation): void
+    {
+        $this->_em->persist($operation);
+        $this->_em->flush();
+    }
+
+    /**
+     * Remove record.
+     *
+     * @param Operation $operation Operation
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete(Operation $operation): void
+    {
+        $this->_em->remove($operation);
+        $this->_em->flush();
+    }
+
+    /**
      * Query all records.
+     *
+     * @return QueryBuilder
      */
     public function queryAll(): QueryBuilder
     {
@@ -47,6 +81,9 @@ class OperationRepository extends ServiceEntityRepository
 
     /**
      * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder
+     * @return QueryBuilder
      */
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {

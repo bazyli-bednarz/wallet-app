@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_operations_list'|trans }}</h1>
+    <h1>{{ 'title_operations_list'|trans }} <a class="add-item" href="{{ url('operation_create') }}" title="action_operation_create"><i class="fas fa-plus-circle"></i></a></h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -29,11 +29,17 @@
                     <td>{{ operation.id }}</td>
                     <td>{{ operation.name }}</td>
                     <td>{{ operation.time|format_date('long') }}</td>
-                    <td>{{ operation.value }}</td>
+                    <td>{{ (operation.value/100)|number_format(2, '.', ' ') }}</td>
                     <td>{{ operation.category.name }}</td>
                     <td>
                         <a href="{{ url('operation_show', {id: operation.id}) }}" title="{{ 'action_view'|trans }}">
-                            {{ 'action_view'|trans }}
+                            {{ 'action_view'|trans }} <i class="far fa-eye"></i>
+                        </a>
+                        <a class="edit" href="{{ url('operation_edit', {id: operation.id}) }}" title="{{ 'action_edit'|trans }}">
+                            {{ 'action_edit'|trans }} <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="delete" href="{{ url('operation_delete', {id: operation.id}) }}" title="{{ 'action_delete'|trans }}">
+                            {{ 'action_delete'|trans }} <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>

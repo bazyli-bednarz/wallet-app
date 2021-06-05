@@ -9,14 +9,21 @@ namespace App\Entity;
 use App\Repository\OperationRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=OperationRepository::class)
  * @ORM\Table(name="operations")
+ *
+ * @UniqueEntity(fields={"name"})
  */
 class Operation
 {
     /**
+     * Primary key.
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -24,25 +31,67 @@ class Operation
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * Title.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     type="string",
+     *     length=255,
+     * )
+     *
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="255",
+     * )
      */
     private $name;
 
     /**
+     * Created at.
+     *
+     * @var DateTimeInterface
+     *
      * @ORM\Column(type="datetime")
+     *
+     * @Assert\Type(type="\DateTimeInterface")
+     *
+     * @Gedmo\Timestampable(on="create")
      */
     private $time;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="operations")
+     * @ORM\ManyToOne(
+     *     targetEntity=Category::class,
+     *     inversedBy="operations"
+     * )
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Category")
+     * @Assert\NotNull
      */
     private $category;
+
+    /**
+     * Slug
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     type="string",
+     *     length=255,
+     * )
+     *
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $code;
 
     /**
      * Get ID for operation.
@@ -97,9 +146,9 @@ class Operation
     /**
      * Get operation value.
      *
-     * @return float|null Value
+     * @return int|null Value
      */
-    public function getValue(): ?float
+    public function getValue(): ?int
     {
         return $this->value;
     }
@@ -107,17 +156,15 @@ class Operation
     /**
      * Set operation value.
      *
-     * @param float $value Value
+     * @param int $value Value
      */
-    public function setValue(float $value): void
+    public function setValue(int $value): void
     {
         $this->value = $value;
     }
 
     /**
      * Getter for category containing operation.
-     *
-     * @return Category|null
      */
     public function getCategory(): ?Category
     {
@@ -132,5 +179,15 @@ class Operation
     public function setCategory(?Category $category): void
     {
         $this->category = $category;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
     }
 }

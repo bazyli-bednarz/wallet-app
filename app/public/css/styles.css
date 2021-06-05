@@ -160,8 +160,8 @@ label.required {
     font-weight: bold;
 }
 
-label.required:after {
-    content: " *";
+label.required:before {
+    content: "* ";
     color: red;
 }
 

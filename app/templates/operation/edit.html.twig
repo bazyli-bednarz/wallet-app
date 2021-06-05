@@ -1,0 +1,10 @@
+{% include 'default/_form.html.twig' with {
+    page_title: 'title_operation_edit',
+    page_title_param: {'%id%': operation.id},
+    attr: {
+        method: 'PUT',
+        action: url('operation_edit', {'id': operation.id}),
+    },
+    form: form,
+    back_to_list_path: 'operation_index',
+} %}
