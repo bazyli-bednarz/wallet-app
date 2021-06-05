@@ -156,8 +156,12 @@ table a:hover {
     color: gray;
 }
 
-label.required {
+label {
     font-weight: bold;
+}
+
+label:not(.required):before {
+    content: "\a0\a0\a0";
 }
 
 label.required:before {

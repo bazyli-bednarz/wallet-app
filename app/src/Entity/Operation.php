@@ -8,6 +8,8 @@ namespace App\Entity;
 
 use App\Repository\OperationRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -31,7 +33,7 @@ class Operation
     private $id;
 
     /**
-     * Title.
+     * Name.
      *
      * @var string
      *
@@ -80,7 +82,28 @@ class Operation
     private $category;
 
     /**
-     * Slug
+     * Tags.
+     *
+     * @var Collection
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity=Tag::class,
+     *     inversedBy="operations",
+     * )
+     * @ORM\JoinTable(name="operations_tags")
+     */
+    private $tags;
+
+    /**
+     * Operation constructor.
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+    /**
+     * Slug.
      *
      * @var string
      *
@@ -181,11 +204,51 @@ class Operation
         $this->category = $category;
     }
 
+    /**
+     * Getter for tags.
+     *
+     * @return Collection|Tag[] Tags collection
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add tag to collection.
+     *
+     * @param Tag $tag Tag entity
+     */
+    public function addTag(Tag $tag): void
+    {
+        if (!($this->tags->contains($tag))) {
+            $this->tags[] = $tag;
+        }
+    }
+
+    /**
+     * Remove tag from collection.
+     *
+     * @param Tag $tag Tag entity
+     */
+    public function removeTag(Tag $tag): void
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+        }
+    }
+
+    /**
+     * Get code.
+     */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
+    /**
+     * Set code.
+     */
     public function setCode(string $code): void
     {
         $this->code = $code;

@@ -76,7 +76,15 @@ class OperationRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()->orderBy('operation.time', 'DESC');
+        return $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial operation.{id, time, value, name}',
+                'partial category.{id, name}',
+                'partial tags.{id, name}',
+            )
+            ->join('operation.category', 'category')
+            ->leftJoin('operation.tags', 'tags')
+            ->orderBy('operation.time', 'DESC');
     }
 
     /**

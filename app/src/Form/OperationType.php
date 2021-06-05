@@ -13,12 +13,25 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\DataTransformer\TagsDataTransformer;
 
 /**
  * Class OperationType.
  */
 class OperationType extends AbstractType
 {
+    private TagsDataTransformer $tagsDataTransformer;
+
+    /**
+     * OperationType constructor.
+     * @param TagsDataTransformer $tagsDataTransformer
+     */
+    public function __construct(TagsDataTransformer $tagsDataTransformer)
+    {
+        $this->tagsDataTransformer = $tagsDataTransformer;
+    }
+
+
     /**
      * Builds the form.
      *
@@ -63,6 +76,19 @@ class OperationType extends AbstractType
                 'placeholder' => 'label_none',
                 'required' => true,
             ]
+        );
+
+        $builder->add(
+            'tags',
+            TextType::class,
+            [
+                'label' => 'label_tags',
+                'required' => false,
+                'attr' => ['max_length' => 128],
+            ]
+        );
+        $builder->get('tags')->addModelTransformer(
+            $this->tagsDataTransformer
         );
     }
 

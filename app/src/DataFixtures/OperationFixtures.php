@@ -49,6 +49,14 @@ class OperationFixtures extends AbstractBaseFixtures implements DependentFixture
             $operation->setValue($this->faker->numberBetween(-9999, 99999));
             $operation->setCategory($this->getRandomReference('categories'));
 
+            $tags = $this->getRandomReferences(
+                'tags',
+                $this->faker->numberBetween(0,5)
+            );
+            foreach ($tags as $tag) {
+                $operation->addTag($tag);
+            }
+            
             return $operation;
         });
 
