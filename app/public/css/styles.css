@@ -156,3 +156,12 @@ table a:hover {
     color: gray;
 }
 
+label.required {
+    font-weight: bold;
+}
+
+label.required:after {
+    content: " *";
+    color: red;
+}
+
