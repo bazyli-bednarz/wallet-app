@@ -8,8 +8,6 @@ namespace App\Entity;
 use App\Repository\WalletRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -60,6 +58,18 @@ class Wallet
      */
     private $code;
 
+    /**
+     * @ORM\ManyToOne(
+     *     targetEntity=Currency::class,
+     *     inversedBy="wallets"
+     * )
+     * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Currency")
+     * @Assert\NotNull
+     */
+    private $currency;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,4 +96,23 @@ class Wallet
 
         return $this;
     }
+
+    /**
+     * Getter for currency.
+     */
+    public function getCurrency(): ?Currency
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Setter for currency.
+     *
+     * @param Currency|null $currency Category
+     */
+    public function setCurrency(?Currency $currency): void
+    {
+        $this->currency = $currency;
+    }
+
 }

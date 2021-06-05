@@ -17,6 +17,7 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'wallet.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_wallet'|trans, 'wallet.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_currency'|trans, 'currency.name' )}}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{ wallet.id }}</td>
                     <td>{{ wallet.name }}</td>
+                    <td>{{ wallet.currency.name }}</td>
                     <td>
                         <a href="{{ url('wallet_show', {id: wallet.id}) }}" title="{{ 'action_view'|trans }}">
                             {{ 'action_view'|trans }} <i class="far fa-eye"></i>

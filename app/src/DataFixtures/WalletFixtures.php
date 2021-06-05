@@ -28,10 +28,11 @@ class WalletFixtures extends AbstractBaseFixtures
                 $wallet->setName('Wallet'.' '.$this->faker->randomNumber(2));
             } elseif (2 === $choice) {
                 $creditCardType = $this->faker->creditCardType();
-                $wallet->setName($creditCardType.' '.$this->faker->creditCardNumber('' . $creditCardType . '', true, ' '));
+                $wallet->setName($creditCardType.' '.$this->faker->creditCardNumber(''.$creditCardType.'', true, ' '));
             } elseif (3 === $choice) {
-                $wallet->setName(ucfirst($this->faker->word()) . ' ' . $this->faker->emoji());
+                $wallet->setName(ucfirst($this->faker->word()).' '.$this->faker->emoji());
             }
+            $wallet->setCurrency($this->getRandomReference('currencies'));
 
             return $wallet;
         });
