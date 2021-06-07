@@ -36,6 +36,9 @@
                         {% if operation.tags is defined and operation.tags|length %}
                             {% for tag in operation.tags %}
                                 {{ tag.name }}
+                                {% if not loop.last %}
+                                    {{ '| ' }}
+                                {% endif %}
                             {% endfor %}
                         {% else %}
                             &nbsp;

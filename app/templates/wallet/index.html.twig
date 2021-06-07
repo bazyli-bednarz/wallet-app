@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_wallet_list'|trans }}</h1>
+    <h1>{{ 'title_wallet_list'|trans }} <a class="add-item" href="{{ url('wallet_create') }}" title="action_wallet_create"><i class="fas fa-plus-circle"></i></a></h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -30,6 +30,12 @@
                     <td>
                         <a href="{{ url('wallet_show', {id: wallet.id}) }}" title="{{ 'action_view'|trans }}">
                             {{ 'action_view'|trans }} <i class="far fa-eye"></i>
+                        </a>
+                        <a class="edit" href="{{ url('wallet_edit', {id: wallet.id}) }}" title="{{ 'action_edit'|trans }}">
+                            {{ 'action_edit'|trans }} <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="delete" href="{{ url('wallet_delete', {id: wallet.id}) }}" title="{{ 'action_delete'|trans }}">
+                            {{ 'action_delete'|trans }} <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>

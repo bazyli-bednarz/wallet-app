@@ -77,8 +77,7 @@ class WalletRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('partial wallet.{id, name}',
-                'partial currency.{id, name}')
+            ->select('partial wallet.{id, name}', 'partial currency.{id, name}')
             ->join('wallet.currency', 'currency')
             ->orderBy('wallet.id', 'ASC');
     }

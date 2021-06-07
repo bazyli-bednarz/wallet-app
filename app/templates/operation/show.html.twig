@@ -15,9 +15,23 @@
             <dt>{{ 'label_operation_time'|trans }}</dt>
             <dd>{{ operation.time|format_datetime('long') }}</dd>
             <dt>{{ 'label_operation_value'|trans }}</dt>
-            <dd>{{  operation.value|number_format(2, '.', ' ') }}</dd>
+            <dd>{{  (operation.value/100)|number_format(2, '.', ' ') }}</dd>
             <dt>{{ 'label_operation_category'|trans }}</dt>
             <dd>{{  operation.category.name }}</dd>
+            <dt>{{ 'label_operation_tags'|trans }}</dt>
+            <dd>
+                {% if operation.tags is defined and operation.tags|length %}
+                    <ul>
+                    {% for tag in operation.tags %}
+                        <li>
+                            {{ '#' }}{{ tag.name }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    -
+                {% endif %}
+            </dd>
         </dl>
         <p>
             <a href="{{ url('operation_index') }}" title="{{ 'action_back_to_list'|trans }}">
