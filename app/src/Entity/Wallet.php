@@ -78,7 +78,7 @@ class Wallet
      * @ORM\OneToMany(
      *     targetEntity=Operation::class,
      *     mappedBy="wallet",
-     *     fetch="EXTRA_LAZY",
+     *     fetch="EAGER",
      * )
      */
     private Collection $operations;

@@ -12,10 +12,12 @@
             <dd>#{{ operation.id }}</dd>
             <dt>{{ 'label_operation_name'|trans }}</dt>
             <dd>{{ operation.name }}</dd>
+            <dt>{{ 'label_wallet'|trans }}</dt>
+            <dd>{{ operation.wallet.name }}</dd>
             <dt>{{ 'label_operation_time'|trans }}</dt>
             <dd>{{ operation.time|format_datetime('long') }}</dd>
             <dt>{{ 'label_operation_value'|trans }}</dt>
-            <dd>{{  (operation.value/100)|number_format(2, '.', ' ') }}</dd>
+            <dd>{{  (operation.value/100)|format_currency(operation.wallet.currency.name) }}</dd>
             <dt>{{ 'label_operation_category'|trans }}</dt>
             <dd>{{  operation.category.name }}</dd>
             <dt>{{ 'label_operation_tags'|trans }}</dt>

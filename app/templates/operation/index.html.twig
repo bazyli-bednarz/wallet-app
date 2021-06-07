@@ -19,6 +19,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label_operation_name'|trans, 'operation.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_operation_time'|trans, 'operation.time') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_operation_value'|trans, 'operation.value') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_wallet'|trans, 'wallet.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.name' )}}</th>
                 <th>{{ 'label_tags'|trans }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
@@ -30,7 +31,8 @@
                     <td>{{ operation.id }}</td>
                     <td>{{ operation.name }}</td>
                     <td>{{ operation.time|format_date('long') }}</td>
-                    <td>{{ (operation.value/100)|number_format(2, '.', ' ') }}</td>
+                    <td>{{ (operation.value/100)|format_currency(operation.wallet.currency.name) }}</td>
+                    <td>{{ operation.wallet.name }}</td>
                     <td>{{ operation.category.name }}</td>
                     <td>
                         {% if operation.tags is defined and operation.tags|length %}

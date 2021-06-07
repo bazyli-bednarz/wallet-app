@@ -7,6 +7,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Operation;
+use App\Entity\Wallet;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -73,6 +74,19 @@ class OperationType extends AbstractType
                     return $category->getName();
                 },
                 'label' => 'label_category',
+                'placeholder' => 'label_none',
+                'required' => true,
+            ]
+        );
+        $builder->add(
+            'wallet',
+            EntityType::class,
+            [
+                'class' => Wallet::class,
+                'choice_label' => function ($wallet) {
+                    return $wallet->getName();
+                },
+                'label' => 'label_wallet',
                 'placeholder' => 'label_none',
                 'required' => true,
             ]

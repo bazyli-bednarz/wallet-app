@@ -81,8 +81,10 @@ class OperationRepository extends ServiceEntityRepository
                 'partial operation.{id, time, value, name}',
                 'partial category.{id, name}',
                 'partial tags.{id, name}',
+                'wallet'
             )
             ->join('operation.category', 'category')
+            ->join('operation.wallet', 'wallet')
             ->leftJoin('operation.tags', 'tags')
             ->orderBy('operation.time', 'DESC');
     }
