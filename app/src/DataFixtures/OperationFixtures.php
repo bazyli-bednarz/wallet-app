@@ -26,13 +26,13 @@ class OperationFixtures extends AbstractBaseFixtures implements DependentFixture
     protected ObjectManager $manager;
 
     /**
-     * Generates an array of category dependencies.
+     * Generates an array of dependencies.
      *
      * @return string[] Array of dependencies
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [WalletFixtures::class, CategoryFixtures::class];
     }
 
     /**
@@ -48,6 +48,7 @@ class OperationFixtures extends AbstractBaseFixtures implements DependentFixture
             $operation->setTime($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $operation->setValue($this->faker->numberBetween(-9999, 99999));
             $operation->setCategory($this->getRandomReference('categories'));
+            $operation->setWallet($this->getRandomReference('wallets'));
 
             $tags = $this->getRandomReferences(
                 'tags',
@@ -56,7 +57,7 @@ class OperationFixtures extends AbstractBaseFixtures implements DependentFixture
             foreach ($tags as $tag) {
                 $operation->addTag($tag);
             }
-            
+
             return $operation;
         });
 

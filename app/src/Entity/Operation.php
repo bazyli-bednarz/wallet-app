@@ -82,6 +82,18 @@ class Operation
     private $category;
 
     /**
+     * @ORM\ManyToOne(
+     *     targetEntity=Wallet::class,
+     *     inversedBy="operations"
+     * )
+     * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\Type(type="App\Entity\Wallet")
+     * @Assert\NotNull
+     */
+    private $wallet;
+
+    /**
      * Tags.
      *
      * @var Collection
@@ -188,6 +200,8 @@ class Operation
 
     /**
      * Getter for category containing operation.
+     *
+     * @return Category|null
      */
     public function getCategory(): ?Category
     {
@@ -202,6 +216,26 @@ class Operation
     public function setCategory(?Category $category): void
     {
         $this->category = $category;
+    }
+
+    /**
+     * Getter for wallet containing operation.
+     *
+     * @return Wallet|null
+     */
+    public function getWallet(): ?Wallet
+    {
+        return $this->wallet;
+    }
+
+    /**
+     * Setter for wallet containing operation.
+     *
+     * @param Wallet|null $wallet Wallet
+     */
+    public function setWallet(?Wallet $wallet): void
+    {
+        $this->wallet = $wallet;
     }
 
     /**

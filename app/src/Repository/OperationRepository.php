@@ -91,6 +91,7 @@ class OperationRepository extends ServiceEntityRepository
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder
+     *
      * @return QueryBuilder
      */
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
