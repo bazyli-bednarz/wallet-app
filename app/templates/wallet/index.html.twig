@@ -34,7 +34,7 @@
                         <a class="edit" href="{{ url('wallet_edit', {id: wallet.id}) }}" title="{{ 'action_edit'|trans }}">
                             {{ 'action_edit'|trans }} <i class="fas fa-edit"></i>
                         </a>
-                        <a class="delete" href="{{ url('wallet_delete', {id: wallet.id}) }}" title="{{ 'action_delete'|trans }}">
+                        <a class="delete{% if wallet.operations|length %} disabled{% endif %}" href="{{ url('wallet_delete', {id: wallet.id}) }}" title="{{ 'action_delete'|trans }}">
                             {{ 'action_delete'|trans }} <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
