@@ -169,3 +169,40 @@ label.required:before {
     color: red;
 }
 
+.passwords {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min-content;
+    margin: auto;
+    padding: 1rem;
+}
+
+.users-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile {
+    text-decoration: none;
+    color: gold;
+    transition: 0.3s;
+}
+
+.profile:hover {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+.logout {
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: gold;
+    transition: .3s;
+    padding: 1rem;
+}
+
+.logout:hover {
+    color: goldenrod;
+}

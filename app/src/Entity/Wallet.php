@@ -8,6 +8,7 @@ namespace App\Entity;
 use App\Repository\WalletRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -93,8 +94,6 @@ class Wallet
 
     /**
      * Get id.
-     *
-     * @return int|null
      */
     public function getId(): ?int
     {
@@ -103,8 +102,6 @@ class Wallet
 
     /**
      * Get name.
-     *
-     * @return string|null
      */
     public function getName(): ?string
     {
@@ -113,8 +110,6 @@ class Wallet
 
     /**
      * Set name.
-     *
-     * @param string $name
      */
     public function setName(string $name): void
     {
@@ -123,8 +118,6 @@ class Wallet
 
     /**
      * Get slug.
-     *
-     * @return string|null
      */
     public function getCode(): ?string
     {
@@ -133,8 +126,6 @@ class Wallet
 
     /**
      * Set slug.
-     *
-     * @param string $code
      *
      * @return $this
      */
@@ -147,8 +138,6 @@ class Wallet
 
     /**
      * Getter for currency.
-     *
-     * @return Currency|null
      */
     public function getCurrency(): ?Currency
     {
@@ -181,6 +170,8 @@ class Wallet
      * @param Operation $operation
      *
      * @return $this
+     *
+     * @throws Exception
      */
     public function addOperation(Operation $operation): self
     {
@@ -194,8 +185,6 @@ class Wallet
 
     /**
      * Remove operation.
-     *
-     * @param Operation $operation
      *
      * @return $this
      */

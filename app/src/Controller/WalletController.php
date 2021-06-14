@@ -174,7 +174,7 @@ class WalletController extends AbstractController
     public function delete(Request $request, Wallet $wallet, WalletRepository $walletRepository): Response
     {
         if ($wallet->getOperations()->count()) {
-            $this->addFlash('warning', 'message_category_contains_tasks');
+            $this->addFlash('warning', 'message_wallet_contains_operations');
 
             return $this->redirectToRoute('wallet_index');
         }

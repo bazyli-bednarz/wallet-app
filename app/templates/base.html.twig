@@ -24,6 +24,7 @@
             <header>
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a href="{{ url('index') }}" class="navbar-brand"><i class="far fa-wallet"></i> wallet-app</a>
+                    {% if app.user %}
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link" href="{{ url('index') }}"><i class="fas fa-home"></i> {{ 'menu_home'|trans }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('wallet_index') }}"><i class="fas fa-wallet"></i> {{ 'menu_wallets'|trans }}</a></li>
@@ -35,6 +36,12 @@
 
 
                     </ul>
+
+
+                        <a class="profile" href="#" title="{{ 'my_profile'|trans }}"><i class="fas fa-user"></i> {{ app.user.username }}</a>
+                        <a class="logout" href="{{ url('app_logout') }}" title="{{ 'message_logout'|trans }}"><i class="fas fa-sign-out-alt"></i></a>
+
+                    {% endif %}
                 </nav></header>
             <main class="main">
                 {% block body %}{% endblock %}

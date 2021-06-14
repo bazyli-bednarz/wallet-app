@@ -46,7 +46,7 @@ class OperationFixtures extends AbstractBaseFixtures implements DependentFixture
             $operation = new Operation();
             $operation->setName($this->faker->sentence);
             $operation->setTime($this->faker->dateTimeBetween('-100 days', '-1 days'));
-            $operation->setValue($this->faker->numberBetween(-9999, 99999));
+            $operation->setValue($this->faker->numberBetween(1, 99999));
             $operation->setCategory($this->getRandomReference('categories'));
             $operation->setWallet($this->getRandomReference('wallets'));
 
