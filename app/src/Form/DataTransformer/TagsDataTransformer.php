@@ -6,34 +6,28 @@
 namespace App\Form\DataTransformer;
 
 use App\Entity\Tag;
-use App\Repository\TagRepository;
+use App\Service\TagService;
 use Symfony\Component\Form\DataTransformerInterface;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\OptimisticLockException;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 
 /**
  * Class TagsDataTransformer.
  */
 class TagsDataTransformer implements DataTransformerInterface
 {
-    /**
-     * Tag repository.
-     *
-     * @var TagRepository
-     */
-    private $repository;
+
+    private TagService $tagService;
 
     /**
      * TagsDataTransformer constructor.
      *
-     * @param TagRepository $repository Tag repository
+     * @param TagService $service Tag service
      */
-    public function __construct(TagRepository $repository)
+    public function __construct(TagService $service)
     {
-        $this->repository = $repository;
+        $this->tagService = $service;
     }
 
     /**
@@ -76,11 +70,11 @@ class TagsDataTransformer implements DataTransformerInterface
 
         foreach ($tagNames as $tagName) {
             if ('' !== trim($tagName)) {
-                $tag = $this->repository->findOneByName(strtolower($tagName));
+                $tag = $this->tagService->findOneByName(strtolower($tagName));
                 if (null === $tag) {
                     $tag = new Tag();
                     $tag->setName($tagName);
-                    $this->repository->save($tag);
+                    $this->tagService->save($tag);
                 }
                 $tags[] = $tag;
             }

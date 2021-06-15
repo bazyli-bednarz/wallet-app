@@ -7,8 +7,8 @@ namespace App\Controller;
 
 use App\Entity\Operation;
 use App\Form\OperationType;
-use App\Repository\OperationRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\OperationService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,24 +21,22 @@ use Doctrine\ORM\OptimisticLockException;
  * Class OperationController.
  *
  * @Route("/operation")
+ *
+ * @IsGranted("ROLE_USER")
  */
 class OperationController extends AbstractController
 {
-    private OperationRepository $operationRepository;
-
-    private PaginatorInterface $paginator;
+    private OperationService $operationService;
 
     /**
      * OperationController constructor.
-     *
-     * @param OperationRepository $operationRepository
-     * @param PaginatorInterface  $paginator
+     * @param OperationService $operationService
      */
-    public function __construct(OperationRepository $operationRepository, PaginatorInterface $paginator)
+    public function __construct(OperationService $operationService)
     {
-        $this->operationRepository = $operationRepository;
-        $this->paginator = $paginator;
+        $this->operationService = $operationService;
     }
+
 
     /**
      * Index action.
@@ -55,11 +53,8 @@ class OperationController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $pagination = $this->paginator->paginate(
-            $this->operationRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            OperationRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        $page = $request->query->getInt('page', 1);
+        $pagination = $this->operationService->createPagination($page);
 
         return $this->render(
             'operation/index.html.twig',
@@ -91,7 +86,6 @@ class OperationController extends AbstractController
 
     /**
      * @param Request $request
-     * @param OperationRepository $operationRepository
      *
      * @return Response
      *
@@ -105,14 +99,14 @@ class OperationController extends AbstractController
      *
      * )
      */
-    public function create(Request $request, OperationRepository $operationRepository): Response
+    public function create(Request $request): Response
     {
         $operation = new Operation();
         $form = $this->createForm(OperationType::class, $operation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $operationRepository->save($operation);
+            $this->operationService->save($operation);
             $this->addFlash('success', 'message_created_successfully');
 
             return $this->redirectToRoute('operation_index');
@@ -127,9 +121,8 @@ class OperationController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request             $request             HTTP request
-     * @param Operation           $operation           Operation entity
-     * @param OperationRepository $operationRepository Operation repository
+     * @param Request   $request   HTTP request
+     * @param Operation $operation Operation entity
      *
      * @return Response HTTP response
      *
@@ -143,13 +136,13 @@ class OperationController extends AbstractController
      *     name="operation_edit",
      * )
      */
-    public function edit(Request $request, Operation $operation, OperationRepository $operationRepository): Response
+    public function edit(Request $request, Operation $operation): Response
     {
         $form = $this->createForm(OperationType::class, $operation, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $operationRepository->save($operation);
+            $this->operationService->save($operation);
             $this->addFlash('success', 'message_updated_successfully');
 
             return $this->redirectToRoute('operation_index');
@@ -167,9 +160,8 @@ class OperationController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request             $request             HTTP request
-     * @param Operation           $operation           Operation entity
-     * @param OperationRepository $operationRepository Operation repository
+     * @param Request   $request   HTTP request
+     * @param Operation $operation Operation entity
      *
      * @return Response HTTP response
      *
@@ -183,7 +175,7 @@ class OperationController extends AbstractController
      *     name="operation_delete",
      * )
      */
-    public function delete(Request $request, Operation $operation, OperationRepository $operationRepository): Response
+    public function delete(Request $request, Operation $operation): Response
     {
         $form = $this->createForm(FormType::class, $operation, ['method' => 'DELETE']);
         $form->handleRequest($request);
@@ -193,7 +185,7 @@ class OperationController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $operationRepository->delete($operation);
+            $this->operationService->delete($operation);
             $this->addFlash('success', 'message_deleted_successfully');
 
             return $this->redirectToRoute('operation_index');

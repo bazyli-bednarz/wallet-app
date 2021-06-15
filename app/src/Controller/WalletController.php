@@ -7,8 +7,10 @@ namespace App\Controller;
 
 use App\Entity\Wallet;
 use App\Form\WalletType;
+use App\Repository\OperationRepository;
 use App\Repository\WalletRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,9 +29,10 @@ class WalletController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request            $request          HTTP request
-     * @param WalletRepository   $walletRepository wallet repository
-     * @param PaginatorInterface $paginator        Paginator
+     * @param Request             $request             HTTP request
+     * @param WalletRepository    $walletRepository    Wallet repository
+     * @param OperationRepository $operationRepository Operation repository
+     * @param PaginatorInterface  $paginator           Paginator
      *
      * @return Response HTTP response
      *
@@ -39,18 +42,23 @@ class WalletController extends AbstractController
      *     name="wallet_index",
      * )
      */
-    public function index(Request $request, WalletRepository $walletRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, WalletRepository $walletRepository, OperationRepository $operationRepository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $walletRepository->queryAll(),
+            $walletRepository->queryByAuthor($this->getUser()),
             $request->query->getInt('page', 1),
             WalletRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+
+//        $balance = $operationRepository->getBalance();
+//        var_dump($balance);
 
         return $this->render(
             'wallet/index.html.twig',
             ['pagination' => $pagination]
         );
+
+        //'balance' => $balance
     }
 
     /**
@@ -66,6 +74,11 @@ class WalletController extends AbstractController
      *     name="wallet_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
+     *
+     * @IsGranted(
+     *     "VIEW",
+     *     subject="wallet"
+     *     )
      */
     public function show(Wallet $wallet): Response
     {
@@ -99,6 +112,7 @@ class WalletController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $wallet->setAuthor($this->getUser());
             $walletRepository->save($wallet);
 
             $this->addFlash('success', 'message_created_successfully');
@@ -130,6 +144,11 @@ class WalletController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="wallet_edit",
      * )
+     *
+     * @IsGranted(
+     *     "EDIT",
+     *     subject="wallet"
+     *     )
      */
     public function edit(Request $request, Wallet $wallet, WalletRepository $walletRepository): Response
     {
@@ -170,6 +189,11 @@ class WalletController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="wallet_delete",
      * )
+     *
+     * @IsGranted(
+     *     "DELETE",
+     *     subject="wallet"
+     *     )
      */
     public function delete(Request $request, Wallet $wallet, WalletRepository $walletRepository): Response
     {

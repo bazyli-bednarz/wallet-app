@@ -85,6 +85,13 @@ class Wallet
     private Collection $operations;
 
     /**
+     * Author.
+     *
+     * @ORM\ManyToOne(targetEntity=User::class, fetch="EXTRA_LAZY")
+     */
+    private $author;
+
+    /**
      * Wallet constructor.
      */
     public function __construct()
@@ -93,7 +100,9 @@ class Wallet
     }
 
     /**
-     * Get id.
+     * Get ID.
+     *
+     * @return int|null
      */
     public function getId(): ?int
     {
@@ -198,5 +207,25 @@ class Wallet
         }
 
         return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return User|null
+     */
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set author
+     *
+     * @param User|null $author
+     */
+    public function setAuthor(?User $author): void
+    {
+        $this->author = $author;
     }
 }

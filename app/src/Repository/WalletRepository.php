@@ -5,6 +5,7 @@
  */
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Wallet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -70,6 +71,22 @@ class WalletRepository extends ServiceEntityRepository
     }
 
     /**
+     * Query by author.
+     *
+     * @param User $user
+     *
+     * @return QueryBuilder
+     */
+    public function queryByAuthor(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+        $queryBuilder->andWhere('wallet.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
+    }
+
+    /**
      * Query all records.
      *
      * @return QueryBuilder Query builder
@@ -77,8 +94,9 @@ class WalletRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('partial wallet.{id, name}', 'partial currency.{id, name}')
+            ->select('partial wallet.{id, name}', 'partial currency.{id, name}', 'partial author.{id, email}')
             ->join('wallet.currency', 'currency')
+            ->join('wallet.author', 'author')
             ->orderBy('wallet.id', 'ASC');
     }
 

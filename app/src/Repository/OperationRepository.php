@@ -6,11 +6,14 @@
 namespace App\Repository;
 
 use App\Entity\Operation;
+use App\Entity\Wallet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Operation|null find($id, $lockMode = null, $lockVersion = null)
@@ -99,6 +102,22 @@ class OperationRepository extends ServiceEntityRepository
     public function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('operation');
+    }
+
+    /**
+     * Get wallet balance
+     *
+     * @return QueryBuilder
+     */
+    public function getBalance(PaginatorInterface $paginator): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+// ???
+
+        return $this->createQueryBuilder('operation')
+            ->select('SUM(operation.value) as balance', 'wallet')
+            ->join('operation.wallet', 'wallet')
+            ->groupBy('wallet');
     }
 
     // /**

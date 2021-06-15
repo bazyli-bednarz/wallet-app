@@ -6,13 +6,15 @@
 namespace App\DataFixtures;
 
 use App\Entity\Wallet;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class WalletFixtures.
  */
-class WalletFixtures extends AbstractBaseFixtures
+class WalletFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
+
     /**
      * Load data.
      *
@@ -33,10 +35,21 @@ class WalletFixtures extends AbstractBaseFixtures
                 $wallet->setName(ucfirst($this->faker->word()).' '.$this->faker->emoji());
             }
             $wallet->setCurrency($this->getRandomReference('currencies'));
+            $wallet->setAuthor($this->getRandomReference('users'));
 
             return $wallet;
         });
 
         $manager->flush();
+    }
+
+    /**
+     * Get dependencies
+     *
+     * @return string[]
+     */
+    public function getDependencies(): array
+    {
+        return [UserFixtures::class, CurrencyFixtures::class];
     }
 }
