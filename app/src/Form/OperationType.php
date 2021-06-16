@@ -8,30 +8,36 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Operation;
 use App\Entity\Wallet;
+use App\Form\DataTransformer\TagsDataTransformer;
+use App\Repository\WalletRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Form\DataTransformer\TagsDataTransformer;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * Class OperationType.
  */
 class OperationType extends AbstractType
 {
+    private Security $security;
+
     private TagsDataTransformer $tagsDataTransformer;
 
     /**
      * OperationType constructor.
+     *
      * @param TagsDataTransformer $tagsDataTransformer
+     * @param Security            $security
      */
-    public function __construct(TagsDataTransformer $tagsDataTransformer)
+    public function __construct(TagsDataTransformer $tagsDataTransformer, Security $security)
     {
         $this->tagsDataTransformer = $tagsDataTransformer;
+        $this->security = $security;
     }
-
 
     /**
      * Builds the form.
@@ -83,6 +89,19 @@ class OperationType extends AbstractType
             EntityType::class,
             [
                 'class' => Wallet::class,
+                'query_builder' => function (WalletRepository $walletRepository) {
+                    return $walletRepository->queryByAuthor($this->security->getUser());
+                },
+
+                //$walletRepository->createQueryBuilder('wallet')
+                //                            ->orderBy('wallet.author', 'ASC')
+                //                            ->where('wallet.author = 6');
+
+                //                'query_builder' => function(WalletRepository $walletRepository, User $user) {
+                //                  return $walletRepository->createQueryBuilder('wallet')
+                //                  ->andWhere('wallet.author = :author' )
+                //                  ->setParameter('author', $user);
+                //                },
                 'choice_label' => function ($wallet) {
                     return $wallet->getName();
                 },

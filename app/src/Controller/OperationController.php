@@ -75,6 +75,10 @@ class OperationController extends AbstractController
      *     name="operation_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
+     * @IsGranted(
+     *     "VIEW",
+     *     subject="operation",
+     * )
      */
     public function show(Operation $operation): Response
     {
@@ -135,6 +139,11 @@ class OperationController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="operation_edit",
      * )
+     *
+     * @IsGranted(
+     *     "EDIT",
+     *     subject="operation",
+     * )
      */
     public function edit(Request $request, Operation $operation): Response
     {
@@ -173,6 +182,11 @@ class OperationController extends AbstractController
      *     methods={"GET", "DELETE"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="operation_delete",
+     * )
+     *
+     * @IsGranted(
+     *     "DELETE",
+     *     subject="operation",
      * )
      */
     public function delete(Request $request, Operation $operation): Response
