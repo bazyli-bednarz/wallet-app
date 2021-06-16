@@ -53,8 +53,13 @@ class OperationController extends AbstractController
      */
     public function index(Request $request): Response
     {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
+        $filters['tag_id'] = $request->query->getInt('filters_tag_id');
+        $filters['wallet_id'] = $request->query->getInt('filters_wallet_id');
+
         $page = $request->query->getInt('page', 1);
-        $pagination = $this->operationService->createPagination($page, $this->getUser());
+        $pagination = $this->operationService->createPagination($page, $this->getUser(), $filters);
 
         return $this->render(
             'operation/index.html.twig',

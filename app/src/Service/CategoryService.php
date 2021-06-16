@@ -71,4 +71,16 @@ class CategoryService
     {
         $this->categoryRepository->delete($category);
     }
+
+    /**
+     * Find one category by Id.
+     *
+     * @param int $id
+     *
+     * @return Category|null
+     */
+    function findOneById(int $id): ?Category
+    {
+        return $this->categoryRepository->findOneById($id);
+    }
 }

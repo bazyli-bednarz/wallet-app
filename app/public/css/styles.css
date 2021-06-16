@@ -143,6 +143,14 @@
     color: darkgreen;
 }
 
+.view-operations .fa-list {
+    color: goldenrod;
+}
+
+.view-operations:hover .fa-list {
+    color: darkgoldenrod;
+}
+
 table a:hover {
     text-decoration: none;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,12 +29,11 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url('index') }}"><i class="fas fa-home"></i> {{ 'menu_home'|trans }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('wallet_index') }}"><i class="fas fa-wallet"></i> {{ 'menu_wallets'|trans }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('operation_index') }}"><i class="fas fa-money-bill-wave"></i> {{ 'menu_operations'|trans }}</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item"><a class="nav-link" href="{{ url('category_index') }}"><i class="fas fa-tags"></i> {{ 'menu_categories'|trans }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-hashtag"></i> {{ 'menu_tags'|trans }}</a></li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{{ url('currency_index') }}"><i class="fas fa-dollar-sign"></i> {{ 'menu_currencies'|trans }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('about_index') }}"><i class="far fa-question-circle"></i> {{ 'menu_about'|trans }} </a></li>
-
-
                     </ul>
 
 

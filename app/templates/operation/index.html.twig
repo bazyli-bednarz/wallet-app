@@ -32,12 +32,20 @@
                     <td>{{ operation.name }}</td>
                     <td>{{ operation.time|format_date('long') }}</td>
                     <td>{{ (operation.value/100)|format_currency(operation.wallet.currency.name) }}</td>
-                    <td>{{ operation.wallet.name }}</td>
-                    <td>{{ operation.category.name }}</td>
+                    <td><a href="{{ url('operation_index', {'filters.wallet_id' : operation.wallet.id}) }}" title="{{ operation.wallet.name }}">
+                            {{ operation.wallet.name }}
+                        </a></td>
+                    <td>
+                        <a href="{{ url('operation_index', {'filters.category_id' : operation.category.id}) }}" title="{{ operation.category.name }}">
+                            {{ operation.category.name }}
+                        </a>
+                    </td>
                     <td>
                         {% if operation.tags is defined and operation.tags|length %}
                             {% for tag in operation.tags %}
-                                {{ tag.name }}
+                                <a href="{{ url('operation_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.name }}">
+                                    {{ tag.name }}
+                                </a>
                                 {% if not loop.last %}
                                     {{ '| ' }}
                                 {% endif %}

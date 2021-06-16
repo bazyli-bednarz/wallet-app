@@ -49,4 +49,16 @@ class TagService
     {
         return $this->tagRepository->findOneByName($name);
     }
+
+    /**
+     * Find tag by id.
+     *
+     * @param int $id
+     *
+     * @return Tag|null
+     */
+    public function findOneById(int $id): ?Tag
+    {
+        return $this->tagRepository->findOneById($id);
+    }
 }

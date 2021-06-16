@@ -5,8 +5,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Operation;
+use App\Entity\Tag;
 use App\Entity\User;
+use App\Entity\Wallet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -73,11 +76,13 @@ class OperationRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array $filters
+     *
      * @return QueryBuilder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters = []): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
                 'partial operation.{id, time, value, name}',
                 'partial category.{id, name}',
@@ -88,6 +93,9 @@ class OperationRepository extends ServiceEntityRepository
             ->join('operation.wallet', 'wallet')
             ->leftJoin('operation.tags', 'tags')
             ->orderBy('operation.time', 'DESC');
+        $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
+
+        return $queryBuilder;
     }
 
     /**
@@ -106,14 +114,35 @@ class OperationRepository extends ServiceEntityRepository
      * Query by author.
      *
      * @param User $user
+     * @param array $filters
      *
      * @return QueryBuilder
      */
-    public function queryByAuthor(User $user): QueryBuilder
+    public function queryByAuthor(User $user, array $filters = []): QueryBuilder
     {
-        $queryBuilder = $this->queryAll();
+        $queryBuilder = $this->queryAll($filters);
         $queryBuilder->andWhere('wallet.author = :author')
             ->setParameter('author', $user);
+
+        return $queryBuilder;
+    }
+
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
+            $queryBuilder->andWhere('tags IN (:tag)')
+                ->setParameter('tag', $filters['tag']);
+        }
+
+        if (isset($filters['wallet']) && $filters['wallet'] instanceof Wallet) {
+            $queryBuilder->andWhere('wallet = :wallet')
+                ->setParameter('wallet', $filters['wallet']);
+        }
 
         return $queryBuilder;
     }
