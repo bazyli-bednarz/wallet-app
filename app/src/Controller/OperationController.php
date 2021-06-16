@@ -54,7 +54,7 @@ class OperationController extends AbstractController
     public function index(Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
-        $pagination = $this->operationService->createPagination($page);
+        $pagination = $this->operationService->createPagination($page, $this->getUser());
 
         return $this->render(
             'operation/index.html.twig',

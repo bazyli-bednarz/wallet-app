@@ -6,14 +6,12 @@
 namespace App\Repository;
 
 use App\Entity\Operation;
-use App\Entity\Wallet;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Operation|null find($id, $lockMode = null, $lockVersion = null)
@@ -105,20 +103,31 @@ class OperationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get wallet balance
+     * Query by author.
+     *
+     * @param User $user
      *
      * @return QueryBuilder
      */
-    public function getBalance(PaginatorInterface $paginator): QueryBuilder
+    public function queryByAuthor(User $user): QueryBuilder
     {
         $queryBuilder = $this->queryAll();
-// ???
+        $queryBuilder->andWhere('wallet.author = :author')
+            ->setParameter('author', $user);
 
-        return $this->createQueryBuilder('operation')
-            ->select('SUM(operation.value) as balance', 'wallet')
-            ->join('operation.wallet', 'wallet')
-            ->groupBy('wallet');
+        return $queryBuilder;
     }
+
+//    public function getBalance(PaginatorInterface $paginator): QueryBuilder
+//    {
+//        $queryBuilder = $this->queryAll();
+//// ???
+//
+//        return $this->createQueryBuilder('operation')
+//            ->select('SUM(operation.value) as balance', 'wallet')
+//            ->join('operation.wallet', 'wallet')
+//            ->groupBy('wallet');
+//    }
 
     // /**
     //  * @return Operation[] Returns an array of Operation objects

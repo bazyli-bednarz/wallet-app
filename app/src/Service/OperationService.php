@@ -5,6 +5,7 @@
 namespace App\Service;
 
 use App\Entity\Operation;
+use App\Entity\User;
 use App\Repository\OperationRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -34,14 +35,15 @@ class OperationService
     /**
      * Pagination.
      *
-     * @param int $page
+     * @param int  $page
+     * @param User $user
      *
      * @return PaginationInterface
      */
-    public function createPagination(int $page): PaginationInterface
+    public function createPagination(int $page, User $user): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->operationRepository->queryAll(),
+            $this->operationRepository->queryByAuthor($user),
             $page,
             OperationRepository::PAGINATOR_ITEMS_PER_PAGE
         );
