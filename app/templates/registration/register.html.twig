@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title_register'|trans }} - wallet-app{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    {% if app.user %}
+        <h1>
+            {{ 'message_logged_in_as'|trans }} <span class="username">{{ app.user.username }}</span>
+        </h1>
+        <p>{{ 'message_logged_in_description'|trans }}</p>
+        <img class="img-big" src="{{ asset('images/undraw_wallet.svg') }}" alt="{{ 'image_people_with_wallet'|trans }}">
+    {% else %}
+    <h1>{{ 'title_register'|trans }}</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email, {
+            label: 'label_email'|trans
+        }) }}
+        {{ form_row(registrationForm.password, {
+            label: 'label_password'|trans
+        }) }}
+        {{ form_row(registrationForm.agreeTerms, {
+            label: 'label_terms'|trans
+        }) }}
+
+        <button type="submit" class="btn btn-lg btn-primary">{{ 'button_register'|trans }}</button>
+    {{ form_end(registrationForm) }}
+
+        <p>
+            {{ 'message_already_have_account'|trans }}
+            <a href="{{ url('app_login') }}"> {{ 'login'|trans }}</a>
+        </p>
+
+    {% endif %}
+{% endblock %}

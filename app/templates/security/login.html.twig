@@ -9,12 +9,13 @@
     {% endif %}
 
     {% if app.user %}
-        <div class="mb-3">
-            {{ 'message_you_are_logged_as'|trans }} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{{ 'message_logout'|trans }}</a>
-        </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">{{ 'message_login'|trans }}</h1>
+        <h1>
+            {{ 'message_logged_in_as'|trans }} <span class="username">{{ app.user.username }}</span>
+        </h1>
+        <p>{{ 'message_logged_in_description'|trans }}</p>
+        <img class="img-big" src="{{ asset('images/undraw_make_it_rain.svg') }}" alt="{{ 'image_man_with_wallet'|trans }}">
+    {% else %}
+    <h1>{{ 'message_login'|trans }}</h1>
     <label for="inputEmail">{{ 'label_email'|trans }}</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">{{ 'label_password'|trans }}</label>
@@ -38,8 +39,12 @@
     <button class="btn btn-lg btn-primary" type="submit">
         {{ 'button_sign_in'|trans }}
     </button>
-</form>
 
+</form>
+        <p>
+            {{ 'message_no_account_yet'|trans }}
+            <a href="{{ url('app_register') }}"> {{ 'register'|trans }}</a>
+        </p>
     <div class="passwords shadow p-3 mb-5 bg-white rounded">
         <div class="users-header"><h2>{{ 'test_users'|trans }}</h2></div>
         <div class="users-body">
@@ -87,4 +92,5 @@
             </dl>
         </div>
     </div>
+    {% endif %}
 {% endblock %}

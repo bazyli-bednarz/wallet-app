@@ -86,10 +86,9 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(type="string")
-
+     *
      * @Assert\NotBlank
      * @Assert\Type(type="string")
-     * @SecurityAssert\UserPassword
      */
     private $password;
 

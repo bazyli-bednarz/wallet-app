@@ -186,6 +186,16 @@ label.required:before {
     padding: 1rem;
 }
 
+.img-big {
+    display: block;
+    width: max(40vw, 200px);
+    margin: auto;
+}
+
+.username {
+    color: goldenrod;
+}
+
 .users-body {
     padding: 1rem;
     display: flex;
