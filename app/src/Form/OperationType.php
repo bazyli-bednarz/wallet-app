@@ -9,10 +9,10 @@ use App\Entity\Category;
 use App\Entity\Operation;
 use App\Entity\Wallet;
 use App\Form\DataTransformer\TagsDataTransformer;
+use App\Form\DataTransformer\ValueDataTransformer;
 use App\Repository\WalletRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,16 +27,20 @@ class OperationType extends AbstractType
 
     private TagsDataTransformer $tagsDataTransformer;
 
+    private ValueDataTransformer $valueDataTransformer;
+
     /**
      * OperationType constructor.
      *
-     * @param TagsDataTransformer $tagsDataTransformer
-     * @param Security            $security
+     * @param TagsDataTransformer  $tagsDataTransformer
+     * @param Security             $security
+     * @param ValueDataTransformer $valueDataTransformer
      */
-    public function __construct(TagsDataTransformer $tagsDataTransformer, Security $security)
+    public function __construct(TagsDataTransformer $tagsDataTransformer, Security $security, ValueDataTransformer $valueDataTransformer)
     {
         $this->tagsDataTransformer = $tagsDataTransformer;
         $this->security = $security;
+        $this->valueDataTransformer = $valueDataTransformer;
     }
 
     /**
@@ -64,12 +68,25 @@ class OperationType extends AbstractType
 
         $builder->add(
             'value',
-            IntegerType::class,
+            TextType::class,
             [
                 'label' => 'label_operation_value',
                 'required' => true,
             ]
         );
+
+        $builder->get('value')->addModelTransformer(
+            $this->valueDataTransformer
+        );
+
+//        $builder->add(
+//            'value',
+//            IntegerType::class,
+//            [
+//                'label' => 'label_operation_value',
+//                'required' => true,
+//            ]
+//        );
 
         $builder->add(
             'category',
