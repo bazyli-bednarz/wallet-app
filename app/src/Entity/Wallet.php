@@ -66,7 +66,7 @@ class Wallet
      *     targetEntity=Currency::class,
      *     inversedBy="wallets"
      * )
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      *
      * @Assert\Type(type="App\Entity\Currency")
      * @Assert\NotNull
@@ -79,7 +79,7 @@ class Wallet
      * @ORM\OneToMany(
      *     targetEntity=Operation::class,
      *     mappedBy="wallet",
-     *     fetch="EAGER",
+     *     fetch="LAZY",
      * )
      */
     private Collection $operations;
@@ -92,11 +92,19 @@ class Wallet
     private $author;
 
     /**
+     * @ORM\Column(type="integer")
+     *
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $balance;
+
+    /**
      * Wallet constructor.
      */
     public function __construct()
     {
         $this->operations = new ArrayCollection();
+        if ($this->balance === null) $this->balance = 0;
     }
 
     /**
@@ -227,5 +235,15 @@ class Wallet
     public function setAuthor(?User $author): void
     {
         $this->author = $author;
+    }
+
+    public function getBalance(): ?int
+    {
+        return $this->balance;
+    }
+
+    public function setBalance(int $balance): void
+    {
+        $this->balance = $balance;
     }
 }

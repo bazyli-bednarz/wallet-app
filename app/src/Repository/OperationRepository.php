@@ -15,6 +15,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Operation|null find($id, $lockMode = null, $lockVersion = null)
@@ -98,6 +99,17 @@ class OperationRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
+//    public function getBalance(array $wallets = [])
+//    {
+//        $queryBuilder = $this->createQueryBuilder('balance')
+//            ->select(
+//                'SUM(partial operation.{value})',
+//                'wallet'
+//            )
+//            ->join('operation.wallet', 'balance')
+//            ->groupBy('balance.wallet');
+//    }
+
     /**
      * Get or create new query builder.
      *
@@ -146,6 +158,8 @@ class OperationRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
+
+
 
 //    public function getBalance(PaginatorInterface $paginator): QueryBuilder
 //    {

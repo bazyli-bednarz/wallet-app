@@ -7,7 +7,7 @@
 {% block body %}
     <h1>{{ 'title_about'|trans }}</h1>
     <div class="about d-flex p-2 flex-column justify-content-center align-items-center flex-wrap">
-        <i class="far fa-id-card"></i>
-        <p>{{ 'about_description' }}</p>
+        <p>{{ 'about_description'|trans }}</p>
+        <img class="img-big" src="{{ asset('images/undraw_studying.svg') }}" alt="{{ 'image_studying'|trans }}">
     </div>
 {% endblock %}

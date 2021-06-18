@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_category_list'|trans }} <a class="add-item" href="{{ url('category_create') }}" title="action_category_create"><i class="fas fa-plus-circle"></i></a></h1>
+    <h1>{{ 'title_category_list'|trans }} <a class="add-item" href="{{ url('category_create') }}" title="{{ 'action_category_create'|trans }}"><i class="fas fa-plus-circle"></i></a></h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -15,9 +15,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'category.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.name') }}</th>
-                <th>{{ 'label_actions'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'category.id') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ 'label_actions'|trans }}<i class="fas fa-sort"></i></th>
             </tr>
             </thead>
             <tbody>

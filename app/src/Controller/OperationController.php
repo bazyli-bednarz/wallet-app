@@ -6,8 +6,11 @@
 namespace App\Controller;
 
 use App\Entity\Operation;
+use App\Entity\Wallet;
 use App\Form\OperationType;
+use App\Repository\WalletRepository;
 use App\Service\OperationService;
+use App\Service\WalletService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\OptimisticLockException;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * Class OperationController.
@@ -27,14 +31,16 @@ use Doctrine\ORM\OptimisticLockException;
 class OperationController extends AbstractController
 {
     private OperationService $operationService;
+    private Security $security;
 
     /**
      * OperationController constructor.
      * @param OperationService $operationService
      */
-    public function __construct(OperationService $operationService)
+    public function __construct(OperationService $operationService, Security $security)
     {
         $this->operationService = $operationService;
+        $this->security = $security;
     }
 
 
@@ -108,15 +114,35 @@ class OperationController extends AbstractController
      *
      * )
      */
-    public function create(Request $request): Response
+    public function create(Request $request, WalletService $walletService): Response
     {
         $operation = new Operation();
         $form = $this->createForm(OperationType::class, $operation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->operationService->save($operation);
-            $this->addFlash('success', 'message_created_successfully');
+
+            $wallet = $walletService->findOneById($operation->getWallet()->getId());
+//            $wallet = $operation->getWallet();
+            dump($wallet);
+
+            $walletBalance = $wallet->getBalance();
+            $value = $form['value']->getData();
+            dump($walletBalance);
+            if ($walletBalance+$value >= 0) {
+                $wallet->setBalance($walletBalance+$value);
+                dump($wallet->getBalance());
+                $operation->setWallet($wallet);
+                $this->operationService->save($operation);
+
+                $walletService->save($wallet, $this->security->getUser());
+
+                $this->addFlash('success',$walletBalance+$value );
+                // $this->addFlash('success', 'message_created_successfully');
+            }
+            else {
+                $this->addFlash('warning', 'message_value_too_low');
+            }
 
             return $this->redirectToRoute('operation_index');
         }

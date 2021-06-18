@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_operations_list'|trans }} <a class="add-item" href="{{ url('operation_create') }}" title="action_operation_create"><i class="fas fa-plus-circle"></i></a></h1>
+    <h1>{{ 'title_operations_list'|trans }} <a class="add-item" href="{{ url('operation_create') }}" title="{{ 'action_operation_create'|trans }}"><i class="fas fa-plus-circle"></i></a></h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -15,12 +15,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'operation.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_operation_name'|trans, 'operation.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_operation_time'|trans, 'operation.time') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_operation_value'|trans, 'operation.value') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_operation_wallet'|trans, 'wallet.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.name' )}}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'operation.id') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_name'|trans, 'operation.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_time'|trans, 'operation.time') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_value'|trans, 'operation.value') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_operation_wallet'|trans, 'wallet.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.name' )}}<i class="fas fa-sort"></i></th>
                 <th>{{ 'label_tags'|trans }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>

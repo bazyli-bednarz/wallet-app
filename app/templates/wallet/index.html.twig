@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_wallet_list'|trans }} <a class="add-item" href="{{ url('wallet_create') }}" title="action_wallet_create"><i class="fas fa-plus-circle"></i></a></h1>
+    <h1>{{ 'title_wallet_list'|trans }} <a class="add-item" href="{{ url('wallet_create') }}" title="{{ 'action_wallet_create'|trans }}"><i class="fas fa-plus-circle"></i></a></h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -15,10 +15,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'wallet.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_wallet'|trans, 'wallet.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_currency'|trans, 'currency.name' )}}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_author'|trans, 'author.email' )}}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'wallet.id') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_wallet'|trans, 'wallet.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_currency'|trans, 'currency.name' )}}<i class="fas fa-sort"></i></th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
@@ -28,7 +27,6 @@
                     <td>{{ wallet.id }}</td>
                     <td>{{ wallet.name }}</td>
                     <td>{{ wallet.currency.name }}</td>
-                    <td>{{ wallet.author.email }}</td>
                     <td>
                         <a class="view-operations" href="{{ url('operation_index', {'filters.wallet_id' : wallet.id}) }}" title="{{ 'action_view_operations'|trans }}: {{ wallet.name }}">
                             {{ 'action_view_operations'|trans }} <i class="fas fa-list"></i>

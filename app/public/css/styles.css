@@ -178,6 +178,9 @@ label.required:before {
 }
 
 .passwords {
+    position: fixed;
+    right: 2rem;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -200,6 +203,13 @@ label.required:before {
     padding: 1rem;
     display: flex;
     flex-direction: row;
+}
+
+.users {
+    padding: 1rem;
+}
+.sign-in {
+    margin: 2rem 0;
 }
 
 .profile {

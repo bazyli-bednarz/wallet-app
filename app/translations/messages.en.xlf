@@ -2,6 +2,74 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="about_description">
+                <source>about_description</source>
+                <target>This personal wallet app was designed and programmed by Bazyli Bednarz for Interactive Systems classes final project.</target>
+            </trans-unit>
+
+            <trans-unit id="action_back_to_list">
+                <source>action_back_to_list</source>
+                <target>Back to the list</target>
+            </trans-unit>
+            <trans-unit id="action_category_create">
+                <source>action_category_create</source>
+                <target>Create new category</target>
+            </trans-unit>
+            <trans-unit id="action_create">
+                <source>action_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="action_delete">
+                <source>action_delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="action_edit">
+                <source>action_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="action_operation_create">
+                <source>action_operation_create</source>
+                <target>Create new operation</target>
+            </trans-unit>
+            <trans-unit id="action_view">
+                <source>action_view</source>
+                <target>View</target>
+            </trans-unit>
+            <trans-unit id="action_view_operations">
+                <source>action_view_operations</source>
+                <target>View operations</target>
+            </trans-unit>
+            <trans-unit id="action_wallet_create">
+                <source>action_wallet_create</source>
+                <target>Create new wallet</target>
+            </trans-unit>
+
+            <trans-unit id="box_first">
+                <source>box_first</source>
+                <target>With this personal wallet app you can track and manage your savings and expenses carefully.</target>
+            </trans-unit>
+            <trans-unit id="box_second">
+                <source>box_second</source>
+                <target>All currencies in the world are available!</target>
+            </trans-unit>
+            <trans-unit id="box_third">
+                <source>box_third</source>
+                <target>Sort your operations into different wallets and categories and attach tags at your own will.</target>
+            </trans-unit>
+
+            <trans-unit id="button_register">
+                <source>button_register</source>
+                <target>Register!</target>
+            </trans-unit>
+            <trans-unit id="button_sign_in">
+                <source>button_sign_in</source>
+                <target>Sign in!</target>
+            </trans-unit>
+
             <trans-unit id="head_title_missing">
                 <source>head_title_missing</source>
                 <target>Missing!</target>
@@ -11,9 +79,34 @@
                 <target>Your wallet</target>
             </trans-unit>
 
+            <trans-unit id="image_login">
+                <source>image_login</source>
+                <target>Woman using computer to securely login</target>
+            </trans-unit>
+            <trans-unit id="image_man_with_wallet">
+                <source>image_man_with_wallet</source>
+                <target>Man with wallet</target>
+            </trans-unit>
+            <trans-unit id="image_people_with_wallet">
+                <source>image_people_with_wallet</source>
+                <target>People with wallet</target>
+            </trans-unit>
+            <trans-unit id="image_register">
+                <source>image_register</source>
+                <target>Two factor authentication login</target>
+            </trans-unit>
+            <trans-unit id="image_studying">
+                <source>image_studying</source>
+                <target>Woman studying</target>
+            </trans-unit>
+
             <trans-unit id="label_actions">
                 <source>label_actions</source>
                 <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="label_author">
+                <source>label_author</source>
+                <target>Author</target>
             </trans-unit>
             <trans-unit id="label_balance">
                 <source>label_balance</source>
@@ -27,6 +120,10 @@
                 <source>label_currency</source>
                 <target>Currency</target>
             </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
             <trans-unit id="label_empty_list">
                 <source>label_empty_list</source>
                 <target>Empty list!</target>
@@ -35,25 +132,49 @@
                 <source>label_id</source>
                 <target>ID</target>
             </trans-unit>
+            <trans-unit id="item_not_found">
+                <source>item_not_found</source>
+                <target>Item wasn't found!</target>
+            </trans-unit>
             <trans-unit id="label_name">
                 <source>label_name</source>
-                <target>Wallet name</target>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="label_operation_category">
+                <source>label_operation_category</source>
+                <target>Category</target>
             </trans-unit>
             <trans-unit id="label_operation_name">
                 <source>label_operation_name</source>
                 <target>Operation name</target>
             </trans-unit>
-            <trans-unit id="label_operation_value">
-                <source>label_operation_value</source>
-                <target>Value</target>
+            <trans-unit id="label_operation_tags">
+                <source>label_operation_tags</source>
+                <target>Tags</target>
             </trans-unit>
             <trans-unit id="label_operation_time">
                 <source>label_operation_time</source>
                 <target>Added</target>
             </trans-unit>
+            <trans-unit id="label_operation_value">
+                <source>label_operation_value</source>
+                <target>Value</target>
+            </trans-unit>
+            <trans-unit id="label_operation_wallet">
+                <source>label_operation_wallet</source>
+                <target>Wallet</target>
+            </trans-unit>
+            <trans-unit id="label_password">
+                <source>label_password</source>
+                <target>Password</target>
+            </trans-unit>
             <trans-unit id="label_tags">
                 <source>label_tags</source>
                 <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="label_terms">
+                <source>label_terms</source>
+                <target>I accept terms of service</target>
             </trans-unit>
             <trans-unit id="label_view">
                 <source>label_view</source>
@@ -63,9 +184,102 @@
                 <source>label_view_title</source>
                 <target>View this wallet!</target>
             </trans-unit>
+            <trans-unit id="label_wallet">
+                <source>label_wallet</source>
+                <target>Wallet</target>
+            </trans-unit>
             <trans-unit id="label_wallet_not_found">
                 <source>label_wallet_not_found</source>
                 <target>That wallet does not exist!</target>
+            </trans-unit>
+
+            <trans-unit id="login">
+                <source>login</source>
+                <target>Login!</target>
+            </trans-unit>
+
+            <trans-unit id="menu_about">
+                <source>menu_about</source>
+                <target>About</target>
+            </trans-unit>
+            <trans-unit id="menu_categories">
+                <source>menu_categories</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="menu_currencies">
+                <source>menu_currencies</source>
+                <target>Currencies</target>
+            </trans-unit>
+            <trans-unit id="menu_home">
+                <source>menu_home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="menu_operations">
+                <source>menu_operations</source>
+                <target>Operations</target>
+            </trans-unit>
+            <trans-unit id="menu_wallets">
+                <source>menu_wallets</source>
+                <target>Wallets</target>
+            </trans-unit>
+
+            <trans-unit id="my_profile">
+                <source>my_profile</source>
+                <target>My profile</target>
+            </trans-unit>
+
+            <trans-unit id="message_already_have_account">
+                <source>message_already_have_account</source>
+                <target>You already have an account?</target>
+            </trans-unit>
+            <trans-unit id="message_created_successfully">
+                <source>message_created_successfully</source>
+                <target>Created successfully!</target>
+            </trans-unit>
+            <trans-unit id="message_deleted_successfully">
+                <source>message_deleted_successfully</source>
+                <target>Deleted successfully!</target>
+            </trans-unit>
+            <trans-unit id="message_empty_list">
+                <source>message_empty_list</source>
+                <target>The list is empty!</target>
+            </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Data is not valid!</target>
+            </trans-unit>
+            <trans-unit id="message_item_not_found">
+                <source>message_item_not_found</source>
+                <target>Item wasn't found!</target>
+            </trans-unit>
+            <trans-unit id="message_logged_in_as">
+                <source>message_logged_in_as</source>
+                <target>You are logged in as</target>
+            </trans-unit>
+            <trans-unit id="message_logged_in_description">
+                <source>message_logged_in_description</source>
+                <target>You can't quite login more, sorry!</target>
+            </trans-unit>
+            <trans-unit id="message_login">
+                <source>message_login</source>
+                <target>Login!</target>
+            </trans-unit>
+            <trans-unit id="message_logout">
+                <source>message_logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="message_no_account_yet">
+                <source>message_no_account_yet</source>
+                <target>No account yet?</target>
+            </trans-unit>
+            <trans-unit id="message_value_too_low">
+                <source>message_value_too_low</source>
+                <target>Operation value exceeds wallet balance!</target>
+            </trans-unit>
+
+            <trans-unit id="register">
+                <source>register</source>
+                <target>Register!</target>
             </trans-unit>
 
             <trans-unit id="return_to_wallet_list">
@@ -77,9 +291,82 @@
                 <target>Go back to the wallet list!</target>
             </trans-unit>
 
+            <trans-unit id="test_admins">
+                <source>test_admins</source>
+                <target>Test admins</target>
+            </trans-unit>
+            <trans-unit id="test_admins_logins">
+                <source>test_admins_logins</source>
+                <target>Test admins logins</target>
+            </trans-unit>
+            <trans-unit id="test_admins_password">
+                <source>test_admins_password</source>
+                <target>Test admins password</target>
+            </trans-unit>
+            <trans-unit id="test_users">
+                <source>test_users</source>
+                <target>Test users</target>
+            </trans-unit>
+            <trans-unit id="test_users_logins">
+                <source>test_users_logins</source>
+                <target>Test users logins</target>
+            </trans-unit>
+            <trans-unit id="test_users_password">
+                <source>test_users_password</source>
+                <target>Test users passwords</target>
+            </trans-unit>
+
+            <trans-unit id="title_about">
+                <source>title_about</source>
+                <target>About</target>
+            </trans-unit>
+            <trans-unit id="title_category_list">
+                <source>title_category_list</source>
+                <target>Category list</target>
+            </trans-unit>
+            <trans-unit id="title_category_details">
+                <source>title_category_details</source>
+                <target>Category details</target>
+            </trans-unit>
+            <trans-unit id="title_index">
+                <source>title_index</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="title_currency_list">
+                <source>title_currency_list</source>
+                <target>Currency list</target>
+            </trans-unit>
+            <trans-unit id="title_currency_details">
+                <source>title_currency_details</source>
+                <target>Currency details</target>
+            </trans-unit>
+            <trans-unit id="title_login">
+                <source>title_login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="title_operation_details">
+                <source>title_operation_details</source>
+                <target>Your operation</target>
+            </trans-unit>
+            <trans-unit id="title_operation_list">
+                <source>title_operation_list</source>
+                <target>Your operation list</target>
+            </trans-unit>
+            <trans-unit id="title_operations_list">
+                <source>title_operations_list</source>
+                <target>Your operations</target>
+            </trans-unit>
+            <trans-unit id="title_register">
+                <source>title_register</source>
+                <target>Register</target>
+            </trans-unit>
             <trans-unit id="title_wallet">
                 <source>title_wallet</source>
                 <target>Your wallet</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_details">
+                <source>title_wallet_details</source>
+                <target>Your wallet details</target>
             </trans-unit>
             <trans-unit id="title_wallet_list">
                 <source>title_wallet_list</source>
