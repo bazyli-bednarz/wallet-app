@@ -187,7 +187,7 @@ class CategoryController extends AbstractController
     {
 
         if ($category->getOperations()->count()) {
-            $this->addFlash('warning', 'message_category_contains_tasks');
+            $this->addFlash('warning', 'message_category_contains_operations');
 
             return $this->redirectToRoute('category_index');
         }

@@ -79,7 +79,7 @@ class UserController extends AbstractController
      * )
      *
      * @IsGranted(
-     *     "VIEW",
+     *     "MANAGE",
      *     subject="user"
      *  )
      */

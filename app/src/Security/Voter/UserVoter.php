@@ -27,7 +27,7 @@ class UserVoter extends Voter
      */
     protected function supports($attribute, $subject): bool
     {
-        return in_array($attribute, ['VIEW', 'EDIT', 'DELETE']) && $subject instanceof User;
+        return in_array($attribute, ['VIEW', 'EDIT', 'DELETE', 'MANAGE']) && $subject instanceof User;
     }
 
     /**
@@ -53,7 +53,7 @@ class UserVoter extends Voter
             case 'DELETE':
                 return $this->isAuthor($subject, $user);
             case 'MANAGE':
-                return $this->isAdmin($subject, $user);
+                return $this->isAdminorOwner($subject, $user);
             default:
                 return false;
         }
@@ -72,8 +72,17 @@ class UserVoter extends Voter
         return $subject->getId() === $user->getId();
     }
 
-    private function isAdmin($subject, User $user): bool
+    /**
+     * Check if is an author or admin.
+     *
+     * @param $subject
+     * @param User $user
+     *
+     * @return bool
+     */
+    private function isAdminOrOwner($subject, User $user): bool
     {
-        return $user->getRoles() === 'ROLE_ADMIN';
+        return ($subject->getId() === $user->getId()) || (in_array('ROLE_ADMIN', $user->getRoles()));
+
     }
 }

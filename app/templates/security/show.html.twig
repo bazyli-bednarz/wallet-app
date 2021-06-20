@@ -11,7 +11,9 @@
             <dt>{{ 'label_id'|trans }}</dt>
             <dd>{{ user.id }}</dd>
             <dt>{{ 'label_email'|trans }}</dt>
-            <dd>{{  user.email }}</dd>
+            <dd>{{ user.email }}</dd>
+            <dt>{{ 'label_actions'|trans }}</dt>
+            <dd><a href="{{ url('user_edit', {'id': user.id}) }}">{{ 'change_password'|trans }}</a></dd>
         </dl>
     {% else %}
         <p>

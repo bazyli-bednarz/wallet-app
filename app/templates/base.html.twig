@@ -35,7 +35,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url('currency_index') }}"><i class="fas fa-dollar-sign"></i> {{ 'menu_currencies'|trans }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('about_index') }}"><i class="far fa-question-circle"></i> {{ 'menu_about'|trans }} </a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url('user_index') }}"><i class="fas fa-users-cog"></i> {{ 'administration'|trans }} </a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('user_index') }}"><i class="fas fa-users-cog"></i> {{ 'menu_administration'|trans }} </a></li>
                         {% endif %}
                     </ul>
 

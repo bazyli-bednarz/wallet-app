@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_user_list'|trans }} <a class="add-item" href="#" title="{{ 'action_user_create'|trans }}"><i class="fas fa-plus-circle"></i></a></h1>
+    <h1>{{ 'title_user_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -37,15 +37,12 @@
                     <td>{{ user.password }}</td>
                     <td>
 
-{#                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action_view'|trans }}">#}
-{#                            {{ 'action_view'|trans }} <i class="far fa-eye"></i>#}
-{#                        </a>#}
-{#                        <a class="edit" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action_edit'|trans }}">#}
-{#                            {{ 'action_edit'|trans }} <i class="fas fa-edit"></i>#}
-{#                        </a>#}
-{#                        <a class="delete{% if user.operations|length %} disabled{% endif %}" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'action_delete'|trans }}">#}
-{#                            {{ 'action_delete'|trans }} <i class="fas fa-trash-alt"></i>#}
-{#                        </a>#}
+                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action_view'|trans }}">
+                            {{ 'action_view'|trans }} <i class="far fa-eye"></i>
+                        </a>
+                        <a class="edit" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action_edit'|trans }}">
+                            {{ 'action_edit'|trans }} <i class="fas fa-edit"></i>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
