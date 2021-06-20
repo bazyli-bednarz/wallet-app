@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_profile'|trans }}
+{% endblock %}
+
+{% block body %}
+    {% if user is defined and user|length %}
+    <h1>{{ 'title_profile'|trans }} - <span class="username">{{ user.email }}</span></h1>
+        <dl class="dl-horizontal">
+            <dt>{{ 'label_id'|trans }}</dt>
+            <dd>{{ user.id }}</dd>
+            <dt>{{ 'label_email'|trans }}</dt>
+            <dd>{{  user.email }}</dd>
+        </dl>
+    {% else %}
+        <p>
+            {{ 'message_item_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

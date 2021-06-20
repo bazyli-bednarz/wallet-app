@@ -34,10 +34,12 @@
                         {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{{ url('currency_index') }}"><i class="fas fa-dollar-sign"></i> {{ 'menu_currencies'|trans }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('about_index') }}"><i class="far fa-question-circle"></i> {{ 'menu_about'|trans }} </a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url('user_index') }}"><i class="fas fa-users-cog"></i> {{ 'administration'|trans }} </a></li>
+                        {% endif %}
                     </ul>
 
-
-                        <a class="profile" href="#" title="{{ 'my_profile'|trans }}"><i class="fas fa-user"></i> {{ app.user.username }}</a>
+                        <a class="profile" href="{{ path('user_show', {'id': app.user.id}) }}" title="{{ 'my_profile'|trans }}"><i class="fas fa-user"></i> {{ app.user.username }}</a>
                         <a class="logout" href="{{ url('app_logout') }}" title="{{ 'message_logout'|trans }}"><i class="fas fa-sign-out-alt"></i></a>
 
                     {% endif %}

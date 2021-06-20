@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_user_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title_user_list'|trans }} <a class="add-item" href="#" title="{{ 'action_user_create'|trans }}"><i class="fas fa-plus-circle"></i></a></h1>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'user.id') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_user'|trans, 'user.email') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_roles'|trans, 'user.roles') }}<i class="fas fa-sort"></i></th>
+                <th>{{ 'label_password'|trans }}</th>
+                <th>{{ 'label_actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in pagination.items %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% if 'ROLE_ADMIN' in user.roles %}
+                            <p class="admin">admin</p>
+                        {% else %}
+                            user
+                        {% endif %}
+                    </td>
+                    <td>{{ user.password }}</td>
+                    <td>
+
+{#                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action_view'|trans }}">#}
+{#                            {{ 'action_view'|trans }} <i class="far fa-eye"></i>#}
+{#                        </a>#}
+{#                        <a class="edit" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action_edit'|trans }}">#}
+{#                            {{ 'action_edit'|trans }} <i class="fas fa-edit"></i>#}
+{#                        </a>#}
+{#                        <a class="delete{% if user.operations|length %} disabled{% endif %}" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'action_delete'|trans }}">#}
+{#                            {{ 'action_delete'|trans }} <i class="fas fa-trash-alt"></i>#}
+{#                        </a>#}
+                    </td>
+                </tr>
+            {% endfor %}
+
+
+
+
+
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message_empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

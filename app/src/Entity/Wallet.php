@@ -66,7 +66,7 @@ class Wallet
      *     targetEntity=Currency::class,
      *     inversedBy="wallets"
      * )
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      *
      * @Assert\Type(type="App\Entity\Currency")
      * @Assert\NotNull

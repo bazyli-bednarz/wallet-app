@@ -208,8 +208,13 @@ label.required:before {
 .users {
     padding: 1rem;
 }
+
 .sign-in {
     margin: 2rem 0;
+}
+
+.admin {
+    color: goldenrod;
 }
 
 .profile {
