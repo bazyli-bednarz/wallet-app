@@ -1,10 +1,10 @@
 {% include 'default/_form.html.twig' with {
     page_title: 'title_profile_edit',
-    page_title_param: {'%id%': user.id},
+    page_title_param: {'%email%': user.email},
     attr: {
         method: 'PUT',
         action: url('user_edit', {'id': user.id}),
     },
     form: form,
-    back_to_list_path: 'index',
+    back_to_list_path: 'wallet_index',
 } %}

@@ -100,8 +100,10 @@ class OperationController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * Create operation and update wallet balance.
      *
+     * @param Request $request
+     * @param WalletService $walletService
      * @return Response
      *
      * @throws ORMException
@@ -111,7 +113,6 @@ class OperationController extends AbstractController
      *     "/create",
      *     methods={"GET", "POST"},
      *     name="operation_create",
-     *
      * )
      */
     public function create(Request $request, WalletService $walletService): Response
@@ -123,22 +124,15 @@ class OperationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $wallet = $walletService->findOneById($operation->getWallet()->getId());
-//            $wallet = $operation->getWallet();
-            dump($wallet);
-
             $walletBalance = $wallet->getBalance();
             $value = $form['value']->getData();
-            dump($walletBalance);
             if ($walletBalance+$value >= 0) {
                 $wallet->setBalance($walletBalance+$value);
-                dump($wallet->getBalance());
                 $operation->setWallet($wallet);
                 $this->operationService->save($operation);
 
                 $walletService->save($wallet, $this->security->getUser());
-
-                $this->addFlash('success',$walletBalance+$value );
-                // $this->addFlash('success', 'message_created_successfully');
+                $this->addFlash('success', 'message_created_successfully');
             }
             else {
                 $this->addFlash('warning', 'message_value_too_low');
@@ -176,14 +170,50 @@ class OperationController extends AbstractController
      *     subject="operation",
      * )
      */
-    public function edit(Request $request, Operation $operation): Response
+    public function edit(Request $request, Operation $operation, WalletService $walletService): Response
     {
+        $operationOld = clone $operation;
+        $valueOld = $operationOld->getValue();
+        $walletOld = clone $walletService->findOneById($operationOld->getWallet()->getId());
+        $walletOldId = $walletOld->getId();
+        $walletBalanceOld = $walletOld->getBalance();
+
         $form = $this->createForm(OperationType::class, $operation, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->operationService->save($operation);
-            $this->addFlash('success', 'message_updated_successfully');
+            $walletNew = $walletService->findOneById($form['wallet']->getData()->getId());
+            if ($walletNew->getId() === $walletOldId) {
+                $walletBalance = $walletNew->getBalance();
+                $valueNew = $form['value']->getData();
+                if ($walletBalance + $valueNew - $valueOld >= 0)
+                {
+                    $walletNew->setBalance($walletBalance + $valueNew - $valueOld);
+                    $this->operationService->save($operation);
+                    $this->addFlash('success', 'message_created_successfully');
+                }
+                else
+                {
+                    $this->addFlash('warning', 'message_value_too_low');
+                }
+            }
+            else
+            {
+                $walletBalanceNew = $walletNew->getBalance();
+                $valueNew = $form['value']->getData();
+                if (($walletBalanceOld - $valueOld < 0) || ($walletBalanceNew + $valueNew < 0))
+                {
+                    $this->addFlash('warning', 'message_value_too_low');
+                }
+                else
+                {
+                    $walletNew->setBalance($walletBalanceNew + $valueNew);
+                    $walletService->findOneById($walletOldId)->setBalance($walletBalanceOld - $valueOld);
+                    $operation->setWallet($walletNew);
+                    $this->operationService->save($operation);
+                    $this->addFlash('success', 'message_created_successfully');
+                }
+            }
 
             return $this->redirectToRoute('operation_index');
         }
@@ -220,8 +250,14 @@ class OperationController extends AbstractController
      *     subject="operation",
      * )
      */
-    public function delete(Request $request, Operation $operation): Response
+    public function delete(Request $request, Operation $operation, WalletService $walletService): Response
     {
+        $operationOld = clone $operation;
+        $valueOld = $operationOld->getValue();
+        $walletOld = clone $walletService->findOneById($operationOld->getWallet()->getId());
+//        $walletOldId = $walletOld->getId();
+        $walletBalanceOld = $walletOld->getBalance();
+
         $form = $this->createForm(FormType::class, $operation, ['method' => 'DELETE']);
         $form->handleRequest($request);
 
@@ -230,9 +266,16 @@ class OperationController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->operationService->delete($operation);
-            $this->addFlash('success', 'message_deleted_successfully');
-
+            if ($walletBalanceOld - $valueOld >= 0)
+            {
+                $operation->getWallet()->setBalance($walletBalanceOld - $valueOld);
+                $this->operationService->delete($operation);
+                $this->addFlash('success', 'message_deleted_successfully');
+            }
+            else
+            {
+                $this->addFlash('warning', 'message_value_too_low_delete');
+            }
             return $this->redirectToRoute('operation_index');
         }
 

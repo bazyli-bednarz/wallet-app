@@ -36,7 +36,7 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary sign-in" type="submit">
+    <button class="btn btn-lg btn-primary sign" type="submit">
         {{ 'button_sign_in'|trans }}
     </button>
 
@@ -48,10 +48,9 @@
 
         <img class="img-big" src="{{ asset('images/undraw_secure_login.svg') }}" alt="{{ 'image_login'|trans }}">
 
-    <div class="passwords shadow p-3 mb-5 bg-white rounded">
-        <div class="users-header"><h2>{{ 'test_users'|trans }}</h2></div>
-        <div class="users-body">
-            <dl class="users">
+    <div class="passwords container-fluid">
+        <div><h2>{{ 'test_users'|trans }}</h2></div>
+            <dl>
                 <dt>
                     {{ 'test_users_logins'|trans }}
                 </dt>
@@ -72,8 +71,6 @@
                         <li>user1234</li>
                     </ul>
                 </dd>
-            </dl>
-            <dl class="users">
                 <dt>
                     {{ 'test_admins_logins'|trans }}
                 </dt>
@@ -93,7 +90,6 @@
                     </ul>
                 </dd>
             </dl>
-        </div>
     </div>
     {% endif %}
 {% endblock %}

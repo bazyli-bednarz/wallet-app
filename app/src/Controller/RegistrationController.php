@@ -119,7 +119,6 @@ class RegistrationController extends AbstractController
      */
     public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        dump($user);
         $form = $this->createForm(ChangePasswordType::class, $user, ['method' => 'PUT']);
         $form->handleRequest($request);
 

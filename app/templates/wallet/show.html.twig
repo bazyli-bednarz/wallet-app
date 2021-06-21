@@ -12,6 +12,10 @@
             <dd>{{ wallet.id }}</dd>
             <dt>{{ 'label_wallet'|trans }}</dt>
             <dd>{{  wallet.name }}</dd>
+            <dt>{{ 'label_currency'|trans }}</dt>
+            <dd>{{  wallet.currency.name }}</dd>
+            <dt>{{ 'label_balance'|trans }}</dt>
+            <td>{{ (wallet.balance/100)|format_currency(wallet.currency.name) }}</td>
         </dl>
         <p>
             <a href="{{ url('wallet_index') }}" title="{{ 'action_back_to_list'|trans }}">

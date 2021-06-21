@@ -32,8 +32,7 @@ class WalletFixtures extends AbstractBaseFixtures implements DependentFixtureInt
                 $creditCardType = $this->faker->creditCardType();
                 $wallet->setName($creditCardType.' '.$this->faker->creditCardNumber(''.$creditCardType.'', true, ' '));
             } elseif (3 === $choice) {
-                $wallet->setName(ucfirst($this->faker->word()));
-                //$wallet->setName(ucfirst($this->faker->word()).' '.$this->faker->emoji());
+                $wallet->setName(ucfirst($this->faker->word()).' '.$this->faker->emoji());
             }
             $wallet->setCurrency($this->getRandomReference('currencies'));
             $wallet->setAuthor($this->getRandomReference('users'));

@@ -17,6 +17,7 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'wallet.id') }}<i class="fas fa-sort"></i></th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_wallet'|trans, 'wallet.name') }}<i class="fas fa-sort"></i></th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_balance'|trans, 'wallet.balance' )}}<i class="fas fa-sort"></i></th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_currency'|trans, 'currency.name' )}}<i class="fas fa-sort"></i></th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
@@ -26,6 +27,7 @@
                 <tr>
                     <td>{{ wallet.id }}</td>
                     <td>{{ wallet.name }}</td>
+                    <td>{{ (wallet.balance/100)|format_currency(wallet.currency.name) }}</td>
                     <td>{{ wallet.currency.name }}</td>
                     <td>
                         <a class="view-operations" href="{{ url('operation_index', {'filters.wallet_id' : wallet.id}) }}" title="{{ 'action_view_operations'|trans }}: {{ wallet.name }}">

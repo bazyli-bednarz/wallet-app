@@ -313,9 +313,17 @@
                 <source>message_no_account_yet</source>
                 <target>No account yet?</target>
             </trans-unit>
+            <trans-unit id="message_password_changed">
+                <source>message_password_changed</source>
+                <target>Password was changed.</target>
+            </trans-unit>
             <trans-unit id="message_value_too_low">
                 <source>message_value_too_low</source>
                 <target>Operation value exceeds wallet balance!</target>
+            </trans-unit>
+            <trans-unit id="message_value_too_low_delete">
+                <source>message_value_too_low_delete</source>
+                <target>Deleting this operation would cause exceeding wallet balance!</target>
             </trans-unit>
             <trans-unit id="message_wallet_contains_operations">
                 <source>message_wallet_contains_operations</source>
@@ -326,6 +334,11 @@
                 <source>register</source>
                 <target>Register!</target>
             </trans-unit>
+            <trans-unit id="registration_complete">
+                <source>registration_complete</source>
+                <target>Registration complete!</target>
+            </trans-unit>
+
 
             <trans-unit id="return_to_wallet_list">
                 <source>return_to_wallet_list</source>
@@ -373,9 +386,13 @@
                 <source>title_category_create</source>
                 <target>Create a new category</target>
             </trans-unit>
+            <trans-unit id="title_category_edit">
+                <source>title_category_edit</source>
+                <target>Edit category "%name%"</target>
+            </trans-unit>
             <trans-unit id="title_category_delete">
                 <source>title_category_delete</source>
-                <target>Are you sure you want to delete this category?</target>
+                <target>Delete category "%name%"?</target>
             </trans-unit>
             <trans-unit id="title_category_details">
                 <source>title_category_details</source>
@@ -401,6 +418,14 @@
                 <source>title_operation_create</source>
                 <target>Create new operation</target>
             </trans-unit>
+            <trans-unit id="title_operation_delete">
+                <source>title_operation_delete</source>
+                <target>Delete operation "%name%"?</target>
+            </trans-unit>
+            <trans-unit id="title_operation_edit">
+                <source>title_operation_edit</source>
+                <target>Edit operation "%name%"</target>
+            </trans-unit>
             <trans-unit id="title_operation_details">
                 <source>title_operation_details</source>
                 <target>Your operation</target>
@@ -419,7 +444,7 @@
             </trans-unit>
             <trans-unit id="title_profile_edit">
                 <source>title_profile_edit</source>
-                <target>Edit profile</target>
+                <target>Edit profile - %email%</target>
             </trans-unit>
             <trans-unit id="title_register">
                 <source>title_register</source>
@@ -436,6 +461,14 @@
             <trans-unit id="title_wallet_create">
                 <source>title_wallet_create</source>
                 <target>Create new wallet</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_delete">
+                <source>title_wallet_delete</source>
+                <target>Delete wallet "%name%"?</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_edit">
+                <source>title_wallet_edit</source>
+                <target>Edit wallet "%name%"</target>
             </trans-unit>
             <trans-unit id="title_wallet_details">
                 <source>title_wallet_details</source>
