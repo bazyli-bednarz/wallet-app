@@ -1,6 +1,8 @@
 <?php
 /**
- * User entity.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Entity;
@@ -8,7 +10,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -55,7 +56,7 @@ class User implements UserInterface
      *     options={"unsigned"=true},
      * )
      */
-    private $id;
+    private int $id;
 
     /**
      * E-mail.
@@ -71,14 +72,14 @@ class User implements UserInterface
      * @Assert\NotBlank
      * @Assert\Email
      */
-    private $email;
+    private string $email;
 
     /**
      * Roles.
      *
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * The hashed password.
@@ -90,7 +91,7 @@ class User implements UserInterface
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
-    private $password;
+    private string $password;
 
     /**
      * Getter for the Id.
@@ -131,7 +132,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
     /**
@@ -169,7 +170,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return $this->password;
     }
 
     /**

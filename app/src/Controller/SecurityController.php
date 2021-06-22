@@ -1,17 +1,21 @@
 <?php
 /**
- * Security Controller.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Controller;
 
 use LogicException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * Class SecurityController
+ * Class SecurityController.
  */
 class SecurityController extends AbstractController
 {
@@ -26,10 +30,6 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -40,6 +40,8 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="app_logout")
+     *
+     * @IsGranted("ROLE_USER")
      */
     public function logout()
     {

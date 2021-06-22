@@ -1,9 +1,9 @@
 <?php
-
 /**
- * Tag fixtures.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
-
 namespace App\DataFixtures;
 
 use App\Entity\Tag;
@@ -24,7 +24,7 @@ class TagFixtures extends AbstractBaseFixtures
         $this->createMany(
             10,
             'tags',
-            function ($i) {
+            function () {
                 $tag = new Tag();
                 $tag->setName($this->faker->word);
 

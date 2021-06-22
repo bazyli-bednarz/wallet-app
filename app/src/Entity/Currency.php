@@ -1,14 +1,17 @@
 <?php
 /**
- * Currency entity.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Entity;
 
 use App\Repository\CurrencyRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CurrencyRepository::class)
@@ -19,16 +22,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Currency
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(
      *     type="string",
-     *      length=3,
+     *     length=3,
      * )
      *
      * @Assert\Length(
@@ -37,11 +42,9 @@ class Currency
      * )
      * @Assert\NotBlank
      */
-    private $name;
+    private string $name;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(
      *     targetEntity=Wallet::class,
      *     mappedBy="currency",
@@ -50,22 +53,39 @@ class Currency
      */
     private Collection $wallets;
 
+    /**
+     * Get currency ID.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Get currency name.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Set currency name.
+     *
+     * @param string $name
+     */
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
     /**
+     * Get wallets.
+     *
      * @return Collection
      */
     public function getWallets(): Collection
@@ -73,20 +93,31 @@ class Currency
         return $this->wallets;
     }
 
-    public function addWallet(Wallet $wallet): void {
+    /**
+     * Add wallet.
+     *
+     * @param Wallet $wallet
+     */
+    public function addWallet(Wallet $wallet): void
+    {
         if (!$this->wallets->contains($this)) {
             $this->wallets[] = $wallet;
             $wallet->setCurrency($this);
         }
     }
 
-    public function removeWallet(Wallet $wallet) {
-        if ($this->wallets->contains($wallet)) {
-            $this->wallets->removeElement($wallet);
-            if($wallet->getCurrency() === $this) {
-                $wallet->setCurrency(null);
-            }
-        }
-    }
-
+//    /**
+//     * Remove wallet.
+//     *
+//     * @param Wallet $wallet
+//     */
+//    public function removeWallet(Wallet $wallet): void
+//    {
+//        if ($this->wallets->contains($wallet)) {
+//            $this->wallets->removeElement($wallet);
+//            if ($wallet->getCurrency() === $this) {
+//                $wallet->setCurrency(null);
+//            }
+//        }
+//    }
 }

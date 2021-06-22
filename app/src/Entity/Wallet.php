@@ -1,6 +1,8 @@
 <?php
 /**
- * Wallet entity.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Entity;
@@ -8,7 +10,6 @@ namespace App\Entity;
 use App\Repository\WalletRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -29,7 +30,7 @@ class Wallet
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(
@@ -44,7 +45,7 @@ class Wallet
      * )
      * @Assert\NotBlank
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(
@@ -59,7 +60,7 @@ class Wallet
      *
      * @Gedmo\Slug(fields={"name"})
      */
-    private $code;
+    private string $code;
 
     /**
      * @ORM\ManyToOne(
@@ -71,7 +72,7 @@ class Wallet
      * @Assert\Type(type="App\Entity\Currency")
      * @Assert\NotNull
      */
-    private $currency;
+    private ?Currency $currency;
 
     /**
      * @var Collection|ArrayCollection
@@ -89,12 +90,12 @@ class Wallet
      *
      * @ORM\ManyToOne(targetEntity=User::class, fetch="EXTRA_LAZY")
      */
-    private $author;
+    private ?User $author;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $balance;
+    private int $balance;
 
     /**
      * Wallet constructor.
@@ -102,7 +103,7 @@ class Wallet
     public function __construct()
     {
         $this->operations = new ArrayCollection();
-        if ($this->balance === null) $this->balance = 0;
+        $this->balance = 0;
     }
 
     /**
@@ -117,6 +118,8 @@ class Wallet
 
     /**
      * Get name.
+     *
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -125,6 +128,8 @@ class Wallet
 
     /**
      * Set name.
+     *
+     * @param string $name
      */
     public function setName(string $name): void
     {
@@ -133,6 +138,8 @@ class Wallet
 
     /**
      * Get slug.
+     *
+     * @return string|null
      */
     public function getCode(): ?string
     {
@@ -141,6 +148,8 @@ class Wallet
 
     /**
      * Set slug.
+     *
+     * @param string $code
      *
      * @return $this
      */
@@ -153,6 +162,8 @@ class Wallet
 
     /**
      * Getter for currency.
+     *
+     * @return Currency|null
      */
     public function getCurrency(): ?Currency
     {
@@ -185,8 +196,6 @@ class Wallet
      * @param Operation $operation
      *
      * @return $this
-     *
-     * @throws Exception
      */
     public function addOperation(Operation $operation): self
     {
@@ -200,6 +209,8 @@ class Wallet
 
     /**
      * Remove operation.
+     *
+     * @param Operation $operation
      *
      * @return $this
      */
@@ -216,7 +227,7 @@ class Wallet
     }
 
     /**
-     * Get author
+     * Get author.
      *
      * @return User|null
      */
@@ -226,7 +237,7 @@ class Wallet
     }
 
     /**
-     * Set author
+     * Set author.
      *
      * @param User|null $author
      */
@@ -235,11 +246,21 @@ class Wallet
         $this->author = $author;
     }
 
+    /**
+     * Get wallet balance.
+     *
+     * @return int|null
+     */
     public function getBalance(): ?int
     {
         return $this->balance;
     }
 
+    /**
+     * Set wallet balance.
+     *
+     * @param int $balance
+     */
     public function setBalance(int $balance): void
     {
         $this->balance = $balance;

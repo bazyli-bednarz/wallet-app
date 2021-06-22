@@ -1,12 +1,15 @@
 <?php
 /**
- * Currency controller.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Controller;
 
 use App\Entity\Currency;
 use App\Service\CurrencyService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class CurrencyController.
  *
  * @Route("/currency")
+ *
+ * @IsGranted("ROLE_USER")
  */
 class CurrencyController extends AbstractController
 {
+    /**
+     * @var CurrencyService
+     */
     private CurrencyService $currencyService;
 
     /**

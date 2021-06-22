@@ -1,6 +1,8 @@
 <?php
 /**
- * Operation repository.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Repository;
@@ -15,7 +17,6 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Operation|null find($id, $lockMode = null, $lockVersion = null)
@@ -94,21 +95,8 @@ class OperationRepository extends ServiceEntityRepository
             ->join('operation.wallet', 'wallet')
             ->leftJoin('operation.tags', 'tags')
             ->orderBy('operation.time', 'DESC');
-        $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
-
-        return $queryBuilder;
+        return $this->applyFiltersToList($queryBuilder, $filters);
     }
-
-//    public function getBalance(array $wallets = [])
-//    {
-//        $queryBuilder = $this->createQueryBuilder('balance')
-//            ->select(
-//                'SUM(partial operation.{value})',
-//                'wallet'
-//            )
-//            ->join('operation.wallet', 'balance')
-//            ->groupBy('balance.wallet');
-//    }
 
     /**
      * Get or create new query builder.
@@ -158,46 +146,4 @@ class OperationRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
-
-
-
-//    public function getBalance(PaginatorInterface $paginator): QueryBuilder
-//    {
-//        $queryBuilder = $this->queryAll();
-//// ???
-//
-//        return $this->createQueryBuilder('operation')
-//            ->select('SUM(operation.value) as balance', 'wallet')
-//            ->join('operation.wallet', 'wallet')
-//            ->groupBy('wallet');
-//    }
-
-    // /**
-    //  * @return Operation[] Returns an array of Operation objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Operation
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

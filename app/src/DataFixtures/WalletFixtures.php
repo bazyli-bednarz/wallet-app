@@ -1,6 +1,8 @@
 <?php
 /**
- * Wallet fixture.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\DataFixtures;
@@ -14,7 +16,6 @@ use Doctrine\Persistence\ObjectManager;
  */
 class WalletFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
-
     /**
      * Load data.
      *
@@ -44,7 +45,7 @@ class WalletFixtures extends AbstractBaseFixtures implements DependentFixtureInt
     }
 
     /**
-     * Get dependencies
+     * Get dependencies.
      *
      * @return string[]
      */

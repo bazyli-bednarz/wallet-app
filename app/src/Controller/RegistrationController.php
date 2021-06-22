@@ -1,15 +1,18 @@
 <?php
 /**
- * Registration controller.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Controller;
 
 use App\Entity\User;
-
 use App\Form\ChangePasswordType;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
+use App\Service\UserService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,34 +21,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
- * Class RegistrationController
+ * Class RegistrationController.
  */
 class RegistrationController extends AbstractController
 {
-    private Security $security;
-
     /**
-     * RegistrationController constructor.
-     * @param Security $security
-     */
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
-
-
-    /**
-     * @param Request                      $request
-     * @param UserRepository               $userRepository
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param GuardAuthenticatorHandler    $guardHandler
-     * @param LoginFormAuthenticator       $authenticator
+     * Register new user.
      *
-     * @return Response
+     * @param Request                      $request         HTTP Request
+     * @param UserService                  $service         User service
+     * @param UserPasswordEncoderInterface $passwordEncoder User password interface
+     * @param GuardAuthenticatorHandler    $guardHandler    Guard authenticator handler
+     * @param LoginFormAuthenticator       $authenticator   Login form authenticator handler
+     *
+     * @return Response Response
      *
      * @throws ORMException
      * @throws OptimisticLockException
@@ -56,7 +48,7 @@ class RegistrationController extends AbstractController
      *     name="app_register"
      * )
      */
-    public function register(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
+    public function register(Request $request, UserService $service, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -72,8 +64,7 @@ class RegistrationController extends AbstractController
             );
             $user->setRoles([User::ROLE_USER]);
 
-
-            $userRepository->save($user);
+            $service->save($user);
             $this->addFlash('success', 'registration_complete');
 
             // do anything else you need here, like send an email
@@ -94,13 +85,12 @@ class RegistrationController extends AbstractController
     /**
      * Change credentials.
      *
-     * @param Request $request
-     * @param UserRepository $userRepository
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param GuardAuthenticatorHandler $guardHandler
-     * @param LoginFormAuthenticator $authenticator
+     * @param Request                      $request         HTTP Request
+     * @param User                         $user            User
+     * @param UserRepository               $userRepository  User repository
+     * @param UserPasswordEncoderInterface $passwordEncoder User password encoder interface
      *
-     * @return Response
+     * @return Response Response
      *
      * @throws ORMException
      * @throws OptimisticLockException
@@ -123,7 +113,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -138,8 +127,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('security/edit.html.twig', [
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
         ]);
     }
-
 }

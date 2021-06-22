@@ -1,6 +1,8 @@
 <?php
 /**
- * Category fixture.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\DataFixtures;
@@ -20,7 +22,7 @@ class CategoryFixtures extends AbstractBaseFixtures
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(10, 'categories', function ($i) {
+        $this->createMany(10, 'categories', function () {
             $category = new Category();
             $category->setName($this->faker->word);
 

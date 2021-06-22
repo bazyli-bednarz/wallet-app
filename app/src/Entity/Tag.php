@@ -1,6 +1,8 @@
 <?php
 /**
- * Tag entity.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Entity;
@@ -31,7 +33,7 @@ class Tag
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * Code.
@@ -51,7 +53,7 @@ class Tag
      *
      * @Gedmo\Slug(fields={"name"})
      */
-    private $code;
+    private string $code;
 
     /**
      * Name.
@@ -70,7 +72,7 @@ class Tag
      *     max="32",
      * )
      */
-    private $name;
+    private string $name;
 
     /**
      * Operations.

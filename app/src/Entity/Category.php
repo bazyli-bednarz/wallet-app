@@ -1,6 +1,8 @@
 <?php
 /**
- * Category entity.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Entity;
@@ -28,7 +30,7 @@ class Category
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(
@@ -43,7 +45,7 @@ class Category
      *     max="32",
      * )
      */
-    private $name;
+    private string $name;
 
     /**
      * @var Collection|ArrayCollection
@@ -57,7 +59,7 @@ class Category
     private Collection $operations;
 
     /**
-     * Code
+     * Code.
      *
      * @var string
      *
@@ -74,7 +76,7 @@ class Category
      *
      * @Gedmo\Slug(fields={"name"})
      */
-    private $code;
+    private string $code;
 
     /**
      * Category constructor.
@@ -115,6 +117,8 @@ class Category
     }
 
     /**
+     * Get operations.
+     *
      * @return Collection|Operation[]
      */
     public function getOperations(): Collection
@@ -125,7 +129,10 @@ class Category
     /**
      * Add operation.
      *
-     * @return $this
+     * @param Operation $operation
+     *
+     * @return Category
+     *
      */
     public function addOperation(Operation $operation): self
     {
@@ -137,28 +144,40 @@ class Category
         return $this;
     }
 
+//    /**
+//     * Remove operation.
+//     *
+//     * @param Operation $operation Operation
+//     *
+//     * @return $this
+//     */
+//    public function removeOperation(Operation $operation): self
+//    {
+//        if ($this->operations->removeElement($operation)) {
+//            // set the owning side to null (unless already changed)
+//            if ($operation->getCategory() === $this) {
+//                $operation->setCategory(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
+
     /**
-     * Remove operation.
+     * Get code.
      *
-     * @return $this
+     * @return string|null
      */
-    public function removeOperation(Operation $operation): self
-    {
-        if ($this->operations->removeElement($operation)) {
-            // set the owning side to null (unless already changed)
-            if ($operation->getCategory() === $this) {
-                $operation->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCode(): ?string
     {
         return $this->code;
     }
 
+    /**
+     * Set code.
+     *
+     * @param string $code
+     */
     public function setCode(string $code): void
     {
         $this->code = $code;

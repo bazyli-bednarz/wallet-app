@@ -1,7 +1,10 @@
 <?php
 /**
- * User registration form.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Form;
 
 use App\Entity\User;

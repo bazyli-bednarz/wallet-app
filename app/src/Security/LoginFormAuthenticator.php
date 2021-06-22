@@ -1,10 +1,14 @@
 <?php
+/**
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
+ */
 
 namespace App\Security;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -21,40 +25,46 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+/**
+ * Class LoginFormAuthenticator.
+ */
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
 
+    /**
+     * Login route.
+     */
     public const LOGIN_ROUTE = 'app_login';
 
     /**
      * User repository.
-     *
-     * @var UserRepository
      */
     private UserRepository $userRepository;
 
     /**
-     * URL generator interface
-     *
-     * @var UrlGeneratorInterface
+     * URL generator interface.
      */
     private UrlGeneratorInterface $urlGenerator;
 
     /**
-     * CSRF Token Manager
-     *
-     * @var CsrfTokenManagerInterface
+     * CSRF Token Manager.
      */
     private CsrfTokenManagerInterface $csrfTokenManager;
 
     /**
-     * Password encoder
-     *
-     * @var UserPasswordEncoderInterface
+     * Password encoder.
      */
     private UserPasswordEncoderInterface $passwordEncoder;
 
+    /**
+     * LoginFormAuthenticator constructor.
+     *
+     * @param UserRepository               $userRepository
+     * @param UrlGeneratorInterface        $urlGenerator
+     * @param CsrfTokenManagerInterface    $csrfTokenManager
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
     public function __construct(UserRepository $userRepository, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->userRepository = $userRepository;
@@ -63,13 +73,27 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function supports(Request $request)
+    /**
+     * Supports.
+     *
+     * @param Request $request
+     *
+     * @return bool
+     */
+    public function supports(Request $request):bool
     {
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
-    public function getCredentials(Request $request)
+    /**
+     * Get credentials.
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function getCredentials(Request $request): array
     {
         $credentials = [
             'email' => $request->request->get('email'),
@@ -84,7 +108,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $credentials;
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    /**
+     * Get user.
+     *
+     * @param mixed                 $credentials
+     * @param UserProviderInterface $userProvider
+     *
+     * @return User
+     */
+    public function getUser($credentials, UserProviderInterface $userProvider): User
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
@@ -100,30 +132,55 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $user;
     }
 
-    public function checkCredentials($credentials, UserInterface $user)
+    /**
+     * Check credentials.
+     *
+     * @param mixed         $credentials
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
+    public function checkCredentials($credentials, UserInterface $user): bool
     {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param mixed $credentials
+     *
+     * @return string|null
      */
     public function getPassword($credentials): ?string
     {
         return $credentials['password'];
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    /**
+     * Do on auth success.
+     *
+     * @param Request        $request
+     * @param TokenInterface $token
+     * @param                $providerKey
+     *
+     * @return RedirectResponse
+     */
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
 
         return new RedirectResponse($this->urlGenerator->generate('index'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
-    protected function getLoginUrl()
+    /**
+     * Getter for login URL.
+     *
+     * @return string
+     */
+    protected function getLoginUrl(): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }

@@ -1,26 +1,26 @@
 <?php
 /**
- * User controller.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
 use App\Service\UserService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\ORMException;
-use Doctrine\ORM\OptimisticLockException;
 
 /**
  * Class UserController.
  *
  * @Route("/user")
+ *
+ * @IsGranted("ROLE_USER")
  */
 class UserController extends AbstractController
 {
@@ -60,8 +60,6 @@ class UserController extends AbstractController
             'security/index.html.twig',
             ['pagination' => $pagination]
         );
-
-        //'balance' => $balance
     }
 
     /**

@@ -1,8 +1,10 @@
 <?php
-
 /**
- * Currency repository.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Repository;
 
 use App\Entity\Currency;

@@ -1,6 +1,8 @@
 <?php
 /**
- * Operation fixtures.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\DataFixtures;
@@ -42,7 +44,7 @@ class OperationFixtures extends AbstractBaseFixtures implements DependentFixture
      */
     protected function loadData(ObjectManager $manager): void
     {
-        $this->createMany(100, 'operations', function ($i) {
+        $this->createMany(100, 'operations', function () {
             $operation = new Operation();
             $operation->setName($this->faker->sentence);
             $operation->setTime($this->faker->dateTimeBetween('-100 days', '-1 days'));

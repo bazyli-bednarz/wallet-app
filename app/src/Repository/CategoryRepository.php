@@ -1,6 +1,8 @@
 <?php
 /**
- * Category repository.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Repository;

@@ -331,7 +331,7 @@
             </trans-unit>
             <trans-unit id="message_no_account_yet">
                 <source>message_no_account_yet</source>
-                <target>Nie posadasz jeszcze konta?</target>
+                <target>Nie posiadasz jeszcze konta?</target>
             </trans-unit>
             <trans-unit id="message_page_not_found">
                 <source>message_page_not_found</source>
@@ -340,6 +340,10 @@
             <trans-unit id="message_password_changed">
                 <source>message_password_changed</source>
                 <target>Hasło zostało zmienione.</target>
+            </trans-unit>
+            <trans-unit id="message_updated_successfully">
+                <source>message_updated_successfully</source>
+                <target>Zaktualizowano pomyślnie!</target>
             </trans-unit>
             <trans-unit id="message_value_too_low">
                 <source>message_value_too_low</source>

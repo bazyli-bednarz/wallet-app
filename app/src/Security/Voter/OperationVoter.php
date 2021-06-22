@@ -1,7 +1,8 @@
 <?php
-
 /**
- * Operation security voter.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Security\Voter;

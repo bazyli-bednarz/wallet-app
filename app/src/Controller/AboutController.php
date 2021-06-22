@@ -1,10 +1,13 @@
 <?php
 /**
- * About controller.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class AboutController.
  *
  * @Route("/about")
+ *
+ * @IsGranted("ROLE_USER")
  */
 class AboutController extends AbstractController
 {
@@ -25,7 +30,6 @@ class AboutController extends AbstractController
      *     "/",
      *     name="about_index",
      * )
-     *
      */
     public function index(): Response
     {

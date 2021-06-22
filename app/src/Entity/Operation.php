@@ -1,7 +1,8 @@
 <?php
-
 /**
- * Operation class entity.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Entity;
@@ -30,7 +31,7 @@ class Operation
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * Name.
@@ -49,7 +50,7 @@ class Operation
      *     max="255",
      * )
      */
-    private $name;
+    private string $name;
 
     /**
      * Created at.
@@ -62,12 +63,12 @@ class Operation
      *
      * @Gedmo\Timestampable(on="create")
      */
-    private $time;
+    private DateTimeInterface $time;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $value;
+    private int $value;
 
     /**
      * @ORM\ManyToOne(
@@ -79,7 +80,7 @@ class Operation
      * @Assert\Type(type="App\Entity\Category")
      * @Assert\NotNull
      */
-    private $category;
+    private ?Category $category;
 
     /**
      * @ORM\ManyToOne(
@@ -91,7 +92,7 @@ class Operation
      * @Assert\Type(type="App\Entity\Wallet")
      * @Assert\NotNull
      */
-    private $wallet;
+    private ?Wallet $wallet;
 
     /**
      * Tags.
@@ -104,7 +105,7 @@ class Operation
      * )
      * @ORM\JoinTable(name="operations_tags")
      */
-    private $tags;
+    private Collection $tags;
 
     /**
      * Operation constructor.
@@ -126,7 +127,7 @@ class Operation
      *
      * @Gedmo\Slug(fields={"name"})
      */
-    private $code;
+    private string $code;
 
     /**
      * Get ID for operation.
@@ -274,6 +275,8 @@ class Operation
 
     /**
      * Get code.
+     *
+     * @return ?string
      */
     public function getCode(): ?string
     {
@@ -282,6 +285,8 @@ class Operation
 
     /**
      * Set code.
+     *
+     * @param string $code
      */
     public function setCode(string $code): void
     {

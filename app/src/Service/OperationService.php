@@ -1,7 +1,10 @@
 <?php
 /**
- * Operation service.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Service;
 
 use App\Entity\Operation;
@@ -45,6 +48,7 @@ class OperationService
      *
      * @param int  $page
      * @param User $user
+     * @param array $filters
      *
      * @return PaginationInterface
      */

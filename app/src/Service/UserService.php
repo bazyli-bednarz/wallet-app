@@ -1,7 +1,10 @@
 <?php
 /**
- * User service.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Service;
 
 use App\Entity\User;
@@ -35,11 +38,10 @@ class UserService
      * Pagination.
      *
      * @param int  $page
-     * @param User $user
      *
      * @return PaginationInterface
      */
-    public function createPagination(int $page, User $user): PaginationInterface
+    public function createPagination(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
             $this->userRepository->queryAll(),
@@ -51,7 +53,6 @@ class UserService
     /**
      * Save record.
      *
-     * @param User $user
      * @param User $user
      *
      * @throws ORMException

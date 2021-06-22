@@ -1,6 +1,8 @@
 <?php
 /**
- * Operation type.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Form;
@@ -79,15 +81,6 @@ class OperationType extends AbstractType
             $this->valueDataTransformer
         );
 
-//        $builder->add(
-//            'value',
-//            IntegerType::class,
-//            [
-//                'label' => 'label_operation_value',
-//                'required' => true,
-//            ]
-//        );
-
         $builder->add(
             'category',
             EntityType::class,
@@ -110,15 +103,6 @@ class OperationType extends AbstractType
                     return $walletRepository->queryByAuthor($this->security->getUser());
                 },
 
-                //$walletRepository->createQueryBuilder('wallet')
-                //                            ->orderBy('wallet.author', 'ASC')
-                //                            ->where('wallet.author = 6');
-
-                //                'query_builder' => function(WalletRepository $walletRepository, User $user) {
-                //                  return $walletRepository->createQueryBuilder('wallet')
-                //                  ->andWhere('wallet.author = :author' )
-                //                  ->setParameter('author', $user);
-                //                },
                 'choice_label' => function ($wallet) {
                     return $wallet->getName();
                 },

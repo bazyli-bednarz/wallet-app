@@ -1,6 +1,8 @@
 <?php
 /**
- * Base fixtures.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\DataFixtures;
@@ -32,7 +34,7 @@ abstract class AbstractBaseFixtures extends Fixture
      *
      * @var array
      */
-    private $referencesIndex = [];
+    private array $referencesIndex = [];
 
     /**
      * Load.
@@ -89,7 +91,7 @@ abstract class AbstractBaseFixtures extends Fixture
      * Get array of objects references based on count.
      *
      * @param string $groupName Object group name
-     * @param int    $count   Number of references
+     * @param int    $count     Number of references
      *
      * @return array Result
      */

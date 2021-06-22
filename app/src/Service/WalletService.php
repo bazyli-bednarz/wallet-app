@@ -1,7 +1,10 @@
 <?php
 /**
- * Wallet service.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Service;
 
 use App\Entity\Wallet;

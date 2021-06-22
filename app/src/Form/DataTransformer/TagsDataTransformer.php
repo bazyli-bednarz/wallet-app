@@ -1,8 +1,9 @@
 <?php
 /**
- * Tags data transformer.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
-
 namespace App\Form\DataTransformer;
 
 use App\Entity\Tag;

@@ -1,7 +1,10 @@
 <?php
 /**
- * License block.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
+
 namespace App\Service;
 
 use App\Repository\CurrencyRepository;

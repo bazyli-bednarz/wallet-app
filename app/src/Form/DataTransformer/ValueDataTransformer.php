@@ -1,6 +1,8 @@
 <?php
 /**
- * Value data transformer.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Form\DataTransformer;

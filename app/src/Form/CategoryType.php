@@ -1,6 +1,8 @@
 <?php
 /**
- * Category type.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Form;

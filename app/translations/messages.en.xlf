@@ -341,6 +341,10 @@
                 <source>message_password_changed</source>
                 <target>Password was changed.</target>
             </trans-unit>
+            <trans-unit id="message_updated_successfully">
+                <source>message_updated_successfully</source>
+                <target>Updated successfully!</target>
+            </trans-unit>
             <trans-unit id="message_value_too_low">
                 <source>message_value_too_low</source>
                 <target>Operation value exceeds wallet balance!</target>

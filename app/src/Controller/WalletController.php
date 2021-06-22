@@ -1,6 +1,8 @@
 <?php
 /**
- * Wallet controller.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Controller;
@@ -21,6 +23,8 @@ use Doctrine\ORM\OptimisticLockException;
  * Class WalletController.
  *
  * @Route("/wallet")
+ *
+ * @IsGranted("ROLE_USER")
  */
 class WalletController extends AbstractController
 {

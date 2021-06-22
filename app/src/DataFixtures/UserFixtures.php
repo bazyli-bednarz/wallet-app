@@ -1,6 +1,8 @@
 <?php
 /**
- * User fixtures.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\DataFixtures;

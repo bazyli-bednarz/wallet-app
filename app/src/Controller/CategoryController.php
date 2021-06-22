@@ -1,23 +1,23 @@
 <?php
 /**
- * Category controller.
+ * wallet-app.
+ *
+ * (c) Bazyli Bednarz, 2021
  */
 
 namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
-use App\Repository\CategoryRepository;
 use App\Service\CategoryService;
-use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\ORMException;
-use Doctrine\ORM\OptimisticLockException;
 
 /**
  * Class CategoryController.
@@ -28,6 +28,9 @@ use Doctrine\ORM\OptimisticLockException;
  */
 class CategoryController extends AbstractController
 {
+    /**
+     * @var CategoryService
+     */
     private CategoryService $categoryService;
 
     /**
@@ -40,11 +43,10 @@ class CategoryController extends AbstractController
         $this->categoryService = $categoryService;
     }
 
-
     /**
      * Index action.
      *
-     * @param Request            $request            HTTP request
+     * @param Request $request HTTP request
      *
      * @return Response HTTP response
      *
@@ -88,11 +90,11 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Create new category action.
+     * Create new category.
      *
-     * @param Request            $request            HTTP Request
+     * @param Request $request HTTP Request
      *
-     * @return Response
+     * @return Response HTTP Response
      *
      * @throws ORMException
      * @throws OptimisticLockException
@@ -126,8 +128,8 @@ class CategoryController extends AbstractController
     /**
      * Edit category.
      *
-     * @param Request            $request
-     * @param Category           $category
+     * @param Request  $request  HTTP Request
+     * @param Category $category Category
      *
      * @return Response
      *
@@ -140,7 +142,6 @@ class CategoryController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="category_edit",
      * )
-     *
      */
     public function edit(Request $request, Category $category): Response
     {
@@ -165,7 +166,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Delete category action.
+     * Delete category.
      *
      * @param Request  $request
      * @param Category $category
@@ -182,10 +183,8 @@ class CategoryController extends AbstractController
      *     name="category_delete",
      * )
      */
-
     public function delete(Request $request, Category $category): Response
     {
-
         if ($category->getOperations()->count()) {
             $this->addFlash('warning', 'message_category_contains_operations');
 
@@ -214,5 +213,4 @@ class CategoryController extends AbstractController
             ]
         );
     }
-
 }
