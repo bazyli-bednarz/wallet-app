@@ -88,6 +88,18 @@
                 <target>Your wallet</target>
             </trans-unit>
 
+            <trans-unit id="image_403">
+                <source>image_403</source>
+                <target>Man next to the big phone with X mark on in.</target>
+            </trans-unit>
+            <trans-unit id="image_404">
+                <source>image_404</source>
+                <target>Woman sitting on large 404 - page not found - number.</target>
+            </trans-unit>
+            <trans-unit id="image_error">
+                <source>image_error</source>
+                <target>Small one-eyed alien cutting wire connecting server and computer.</target>
+            </trans-unit>
             <trans-unit id="image_login">
                 <source>image_login</source>
                 <target>Woman using computer to securely login</target>
@@ -265,6 +277,10 @@
                 <target>My profile</target>
             </trans-unit>
 
+            <trans-unit id="message_access_denied">
+                <source>message_access_denied</source>
+                <target>Stop right there, criminal scum! You violated the law. Now pay the court a fine or </target>
+            </trans-unit>
             <trans-unit id="message_already_have_account">
                 <source>message_already_have_account</source>
                 <target>You already have an account?</target>
@@ -284,6 +300,10 @@
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>
                 <target>The list is empty!</target>
+            </trans-unit>
+            <trans-unit id="message_error">
+                <source>message_error</source>
+                <target>Oops! An error occurred! Please wait while we fix it or </target>
             </trans-unit>
             <trans-unit id="message_form_error">
                 <source>message_form_error</source>
@@ -313,6 +333,10 @@
                 <source>message_no_account_yet</source>
                 <target>No account yet?</target>
             </trans-unit>
+            <trans-unit id="message_page_not_found">
+                <source>message_page_not_found</source>
+                <target>Looks like the page you were looking for doesn't exist. Please check spelling mistakes in URL or </target>
+            </trans-unit>
             <trans-unit id="message_password_changed">
                 <source>message_password_changed</source>
                 <target>Password was changed.</target>
@@ -328,6 +352,11 @@
             <trans-unit id="message_wallet_contains_operations">
                 <source>message_wallet_contains_operations</source>
                 <target>This wallet contains operations!</target>
+            </trans-unit>
+
+            <trans-unit id="return_to_home">
+                <source>return_to_home</source>
+                <target>return to the homepage</target>
             </trans-unit>
 
             <trans-unit id="register">
@@ -378,6 +407,10 @@
                 <source>title_about</source>
                 <target>About</target>
             </trans-unit>
+            <trans-unit id="title_access_denied">
+                <source>title_access_denied</source>
+                <target>403 - Access denied!</target>
+            </trans-unit>
             <trans-unit id="title_category_list">
                 <source>title_category_list</source>
                 <target>Category list</target>
@@ -397,6 +430,10 @@
             <trans-unit id="title_category_details">
                 <source>title_category_details</source>
                 <target>Category details</target>
+            </trans-unit>
+            <trans-unit id="title_error">
+                <source>title_error</source>
+                <target>Error!</target>
             </trans-unit>
             <trans-unit id="title_index">
                 <source>title_index</source>
@@ -437,6 +474,10 @@
             <trans-unit id="title_operations_list">
                 <source>title_operations_list</source>
                 <target>Your operations</target>
+            </trans-unit>
+            <trans-unit id="title_page_not_found">
+                <source>title_page_not_found</source>
+                <target>404 - this page wasn't found!</target>
             </trans-unit>
             <trans-unit id="title_profile">
                 <source>title_profile</source>

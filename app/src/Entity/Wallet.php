@@ -93,8 +93,6 @@ class Wallet
 
     /**
      * @ORM\Column(type="integer")
-     *
-     * @ORM\JoinColumn(nullable=true)
      */
     private $balance;
 

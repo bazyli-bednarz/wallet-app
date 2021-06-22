@@ -236,3 +236,7 @@ label.required:before {
 .logout:hover {
     color: goldenrod;
 }
+
+.error {
+    color: red;
+}

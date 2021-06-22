@@ -83,7 +83,7 @@ class Currency
     public function removeWallet(Wallet $wallet) {
         if ($this->wallets->contains($wallet)) {
             $this->wallets->removeElement($wallet);
-            if($wallet->getCurrency() == $this) {
+            if($wallet->getCurrency() === $this) {
                 $wallet->setCurrency(null);
             }
         }
