@@ -2,6 +2,83 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="about_description">
+                <source>about_description</source>
+                <target>Ta aplikacja z portfelem osobistym została zaprojektowana i zaprogramowana przez Bazylego Bednarza w ramach końcowego projektu z przedmiotu System Interakcyjny.</target>
+            </trans-unit>
+
+            <trans-unit id="action_back_to_list">
+                <source>action_back_to_list</source>
+                <target>Powrót do listy</target>
+            </trans-unit>
+            <trans-unit id="action_category_create">
+                <source>action_category_create</source>
+                <target>Utwórz nową kategorię</target>
+            </trans-unit>
+            <trans-unit id="action_create">
+                <source>action_create</source>
+                <target>Utwórz</target>
+            </trans-unit>
+            <trans-unit id="action_delete">
+                <source>action_delete</source>
+                <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="action_edit">
+                <source>action_edit</source>
+                <target>Edycja</target>
+            </trans-unit>
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="action_operation_create">
+                <source>action_operation_create</source>
+                <target>Utwórz nową operację</target>
+            </trans-unit>
+            <trans-unit id="action_user_create">
+                <source>action_user_create</source>
+                <target>Utwórz</target>
+            </trans-unit>
+            <trans-unit id="action_view">
+                <source>action_view</source>
+                <target>Zobacz</target>
+            </trans-unit>
+            <trans-unit id="action_view_operations">
+                <source>action_view_operations</source>
+                <target>Zobacz operacje</target>
+            </trans-unit>
+            <trans-unit id="action_wallet_create">
+                <source>action_wallet_create</source>
+                <target>Utwórz nowy portfel</target>
+            </trans-unit>
+
+            <trans-unit id="box_first">
+                <source>box_first</source>
+                <target>Z tą aplikacją portfela osobistego możesz śledzić swoje wydatki i nimi zarządzać.</target>
+            </trans-unit>
+            <trans-unit id="box_second">
+                <source>box_second</source>
+                <target>Dostępne są wszystkie waluty na świecie!</target>
+            </trans-unit>
+            <trans-unit id="box_third">
+                <source>box_third</source>
+                <target>Przypisuj swoje operacje do różnych portfeli i kategorii oraz dodawaj tagi wedle uznania.</target>
+            </trans-unit>
+
+            <trans-unit id="button_register">
+                <source>button_register</source>
+                <target>Zarejestruj się!</target>
+            </trans-unit>
+            <trans-unit id="change_password">
+                <source>change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+
+            <trans-unit id="button_sign_in">
+                <source>button_sign_in</source>
+                <target>Zaloguj się!</target>
+            </trans-unit>
+
             <trans-unit id="head_title_missing">
                 <source>head_title_missing</source>
                 <target>Nie znaleziono!</target>
@@ -11,9 +88,46 @@
                 <target>Twój portfel</target>
             </trans-unit>
 
+            <trans-unit id="image_403">
+                <source>image_403</source>
+                <target>Strażnik z gry Oblivion.</target>
+            </trans-unit>
+            <trans-unit id="image_404">
+                <source>image_404</source>
+                <target>Kobieta siedząca na wielkim numerze 404 - strony nie odnaleziono</target>
+            </trans-unit>
+            <trans-unit id="image_error">
+                <source>image_error</source>
+                <target>Mały jednooki kosmita przecina kabel łączący serwer i komputer</target>
+            </trans-unit>
+            <trans-unit id="image_login">
+                <source>image_login</source>
+                <target>Kobieta używa komputera, by bezpiecznie zalogować się do aplikacji</target>
+            </trans-unit>
+            <trans-unit id="image_man_with_wallet">
+                <source>image_man_with_wallet</source>
+                <target>Mężczyzna z portfelem</target>
+            </trans-unit>
+            <trans-unit id="image_people_with_wallet">
+                <source>image_people_with_wallet</source>
+                <target>Ludzie z portfelem</target>
+            </trans-unit>
+            <trans-unit id="image_register">
+                <source>image_register</source>
+                <target>Autentykacja</target>
+            </trans-unit>
+            <trans-unit id="image_studying">
+                <source>image_studying</source>
+                <target>Ucząca się kobieta</target>
+            </trans-unit>
+
             <trans-unit id="label_actions">
                 <source>label_actions</source>
-                <target>Operacje</target>
+                <target>Akcje</target>
+            </trans-unit>
+            <trans-unit id="label_author">
+                <source>label_author</source>
+                <target>Autor</target>
             </trans-unit>
             <trans-unit id="label_balance">
                 <source>label_balance</source>
@@ -23,9 +137,21 @@
                 <source>label_category</source>
                 <target>Kategoria</target>
             </trans-unit>
+            <trans-unit id="label_category_name">
+                <source>label_category_name</source>
+                <target>Nazwa kategorii</target>
+            </trans-unit>
+            <trans-unit id="label_new_password">
+                <source>label_new_password</source>
+                <target>Nowe hasło</target>
+            </trans-unit>
             <trans-unit id="label_currency">
                 <source>label_currency</source>
                 <target>Waluta</target>
+            </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>E-mail</target>
             </trans-unit>
             <trans-unit id="label_empty_list">
                 <source>label_empty_list</source>
@@ -35,25 +161,65 @@
                 <source>label_id</source>
                 <target>ID</target>
             </trans-unit>
+            <trans-unit id="label_none">
+                <source>label_none</source>
+                <target>Wybierz z listy...</target>
+            </trans-unit>
+            <trans-unit id="item_not_found">
+                <source>item_not_found</source>
+                <target>Nie odnaleziono!</target>
+            </trans-unit>
             <trans-unit id="label_name">
                 <source>label_name</source>
-                <target>Nazwa portfela</target>
+                <target>Nazwa</target>
+            </trans-unit>
+            <trans-unit id="label_operation_category">
+                <source>label_operation_category</source>
+                <target>Kategoria operacji</target>
             </trans-unit>
             <trans-unit id="label_operation_name">
                 <source>label_operation_name</source>
                 <target>Nazwa operacji</target>
             </trans-unit>
+            <trans-unit id="label_operation_tags">
+                <source>label_operation_tags</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="label_operation_time">
+                <source>label_operation_time</source>
+                <target>Dodano</target>
+            </trans-unit>
             <trans-unit id="label_operation_value">
                 <source>label_operation_value</source>
                 <target>Kwota</target>
             </trans-unit>
-            <trans-unit id="label_operation_time">
-                <source>label_operation_time</source>
-                <target>Data dodania</target>
+            <trans-unit id="label_operation_wallet">
+                <source>label_operation_wallet</source>
+                <target>Portfel</target>
+            </trans-unit>
+            <trans-unit id="label_password">
+                <source>label_password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="label_repeat_password">
+                <source>label_repeat_password</source>
+                <target>Powtórz nowe hasło</target>
+            </trans-unit>
+            <trans-unit id="label_roles">
+                <source>label_roles</source>
+                <target>Rola</target>
             </trans-unit>
             <trans-unit id="label_tags">
                 <source>label_tags</source>
                 <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="label_terms">
+                <source>label_terms</source>
+                <target>Akceptuję warunki użytkowania</target>
+            </trans-unit>
+            <trans-unit id="label_user">
+                <source>label_user</source>
+                <target>Użytkownik</target>
             </trans-unit>
             <trans-unit id="label_view">
                 <source>label_view</source>
@@ -61,25 +227,293 @@
             </trans-unit>
             <trans-unit id="label_view_title">
                 <source>label_view_title</source>
-                <target>Zobacz ten portfel!</target>
+                <target>Zobacz!</target>
+            </trans-unit>
+            <trans-unit id="label_wallet">
+                <source>label_wallet</source>
+                <target>Portfel</target>
             </trans-unit>
             <trans-unit id="label_wallet_not_found">
                 <source>label_wallet_not_found</source>
                 <target>Taki portfel nie istnieje!</target>
             </trans-unit>
 
+            <trans-unit id="login">
+                <source>login</source>
+                <target>Zaloguj się!</target>
+            </trans-unit>
+
+            <trans-unit id="menu_about">
+                <source>menu_about</source>
+                <target>O aplikacji</target>
+            </trans-unit>
+            <trans-unit id="menu_administration">
+                <source>menu_administration</source>
+                <target>ACP</target>
+            </trans-unit>
+            <trans-unit id="menu_categories">
+                <source>menu_categories</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="menu_currencies">
+                <source>menu_currencies</source>
+                <target>Waluty</target>
+            </trans-unit>
+            <trans-unit id="menu_home">
+                <source>menu_home</source>
+                <target>Strona główna</target>
+            </trans-unit>
+            <trans-unit id="menu_operations">
+                <source>menu_operations</source>
+                <target>Operacje</target>
+            </trans-unit>
+            <trans-unit id="menu_wallets">
+                <source>menu_wallets</source>
+                <target>Portfele</target>
+            </trans-unit>
+
+            <trans-unit id="my_profile">
+                <source>my_profile</source>
+                <target>Mój profil</target>
+            </trans-unit>
+
+            <trans-unit id="message_access_denied">
+                <source>message_access_denied</source>
+                <target>Stój, ty kryminalna szumowino! Naruszyłeś prawo. Zapłać sądowi grzywnę lub </target>
+            </trans-unit>
+            <trans-unit id="message_already_have_account">
+                <source>message_already_have_account</source>
+                <target>Posiadasz już konto?</target>
+            </trans-unit>
+            <trans-unit id="message_category_contains_operations">
+                <source>message_category_contains_operations</source>
+                <target>Nie możesz usunąć kategorii, która ma przypisane operacje!</target>
+            </trans-unit>
+            <trans-unit id="message_created_successfully">
+                <source>message_created_successfully</source>
+                <target>Utworzono z powodzeniem!</target>
+            </trans-unit>
+            <trans-unit id="message_deleted_successfully">
+                <source>message_deleted_successfully</source>
+                <target>Usunięto z powodzeniem!</target>
+            </trans-unit>
+            <trans-unit id="message_empty_list">
+                <source>message_empty_list</source>
+                <target>Lista jest pusta!</target>
+            </trans-unit>
+            <trans-unit id="message_error">
+                <source>message_error</source>
+                <target>Ups! Wystąpił błąd! Poczekaj, aż go naprawimy, bądź </target>
+            </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Dane są nieprawidłowe!</target>
+            </trans-unit>
+            <trans-unit id="message_item_not_found">
+                <source>message_item_not_found</source>
+                <target>Nie znaleziono!</target>
+            </trans-unit>
+            <trans-unit id="message_logged_in_as">
+                <source>message_logged_in_as</source>
+                <target>Jesteś zalogowany jako</target>
+            </trans-unit>
+            <trans-unit id="message_logged_in_description">
+                <source>message_logged_in_description</source>
+                <target>Nie możesz się zalogować bardziej niż teraz, przykro mi!</target>
+            </trans-unit>
+            <trans-unit id="message_login">
+                <source>message_login</source>
+                <target>Zaloguj się!</target>
+            </trans-unit>
+            <trans-unit id="message_logout">
+                <source>message_logout</source>
+                <target>Wyloguj się</target>
+            </trans-unit>
+            <trans-unit id="message_no_account_yet">
+                <source>message_no_account_yet</source>
+                <target>Nie posadasz jeszcze konta?</target>
+            </trans-unit>
+            <trans-unit id="message_page_not_found">
+                <source>message_page_not_found</source>
+                <target>Wygląda na to, że strona, której szukałeś, nie istnieje. Sprawdź błędy w pisowni w adresie URL bądź też </target>
+            </trans-unit>
+            <trans-unit id="message_password_changed">
+                <source>message_password_changed</source>
+                <target>Hasło zostało zmienione.</target>
+            </trans-unit>
+            <trans-unit id="message_value_too_low">
+                <source>message_value_too_low</source>
+                <target>Kwota operacji przekracza saldo portfela!</target>
+            </trans-unit>
+            <trans-unit id="message_value_too_low_delete">
+                <source>message_value_too_low_delete</source>
+                <target>Usunięcie tej operacji spowodowałoby przekroczenie salda portfela!</target>
+            </trans-unit>
+            <trans-unit id="message_wallet_contains_operations">
+                <source>message_wallet_contains_operations</source>
+                <target>Ten portfel zawiera operacje!</target>
+            </trans-unit>
+
+            <trans-unit id="return_to_home">
+                <source>return_to_home</source>
+                <target>wróć na stronę główną</target>
+            </trans-unit>
+
+            <trans-unit id="register">
+                <source>register</source>
+                <target>Zarejestruj się!</target>
+            </trans-unit>
+            <trans-unit id="registration_complete">
+                <source>registration_complete</source>
+                <target>Rejestracja udana!</target>
+            </trans-unit>
+
+
             <trans-unit id="return_to_wallet_list">
                 <source>return_to_wallet_list</source>
-                <target>Wróć do listy Twoich portfeli</target>
+                <target>Wróc na listę portfeli</target>
             </trans-unit>
             <trans-unit id="return_to_wallet_list_title">
                 <source>return_to_wallet_list_title</source>
-                <target>Wróć na listę portfeli!</target>
+                <target>Wróc na listę portfeli!</target>
             </trans-unit>
 
+            <trans-unit id="test_admins">
+                <source>test_admins</source>
+                <target>Testowi admini</target>
+            </trans-unit>
+            <trans-unit id="test_admins_logins">
+                <source>test_admins_logins</source>
+                <target>Testowe loginy adminów</target>
+            </trans-unit>
+            <trans-unit id="test_admins_password">
+                <source>test_admins_password</source>
+                <target>Testowe hasło administratorów</target>
+            </trans-unit>
+            <trans-unit id="test_users">
+                <source>test_users</source>
+                <target>Testowi użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="test_users_logins">
+                <source>test_users_logins</source>
+                <target>Testowe loginy użytkowników</target>
+            </trans-unit>
+            <trans-unit id="test_users_password">
+                <source>test_users_password</source>
+                <target>Testowe hasło użytkowników</target>
+            </trans-unit>
+
+            <trans-unit id="title_about">
+                <source>title_about</source>
+                <target>O aplikacji</target>
+            </trans-unit>
+            <trans-unit id="title_access_denied">
+                <source>title_access_denied</source>
+                <target>403 - Odmowa dostępu!</target>
+            </trans-unit>
+            <trans-unit id="title_category_list">
+                <source>title_category_list</source>
+                <target>Lista kategorii</target>
+            </trans-unit>
+            <trans-unit id="title_category_create">
+                <source>title_category_create</source>
+                <target>Utwórz nową kategorię</target>
+            </trans-unit>
+            <trans-unit id="title_category_edit">
+                <source>title_category_edit</source>
+                <target>Edytuj kategorię "%name%"</target>
+            </trans-unit>
+            <trans-unit id="title_category_delete">
+                <source>title_category_delete</source>
+                <target>Usunąć kategorię "%name%"?</target>
+            </trans-unit>
+            <trans-unit id="title_category_details">
+                <source>title_category_details</source>
+                <target>Szczegóły kategorii</target>
+            </trans-unit>
+            <trans-unit id="title_error">
+                <source>title_error</source>
+                <target>Błąd!</target>
+            </trans-unit>
+            <trans-unit id="title_index">
+                <source>title_index</source>
+                <target>Strona główna</target>
+            </trans-unit>
+            <trans-unit id="title_currency_list">
+                <source>title_currency_list</source>
+                <target>Lista dostępnych walut</target>
+            </trans-unit>
+            <trans-unit id="title_currency_details">
+                <source>title_currency_details</source>
+                <target>Szczegóły waluty</target>
+            </trans-unit>
+            <trans-unit id="title_login">
+                <source>title_login</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="title_operation_create">
+                <source>title_operation_create</source>
+                <target>Utwórz nową operację</target>
+            </trans-unit>
+            <trans-unit id="title_operation_delete">
+                <source>title_operation_delete</source>
+                <target>Usunąć operację "%name%"?</target>
+            </trans-unit>
+            <trans-unit id="title_operation_edit">
+                <source>title_operation_edit</source>
+                <target>Edytuj kategorię "%name%"</target>
+            </trans-unit>
+            <trans-unit id="title_operation_details">
+                <source>title_operation_details</source>
+                <target>Twoja operacja</target>
+            </trans-unit>
+            <trans-unit id="title_operation_list">
+                <source>title_operation_list</source>
+                <target>Twoja lista operacji</target>
+            </trans-unit>
+            <trans-unit id="title_operations_list">
+                <source>title_operations_list</source>
+                <target>Twoje operacje</target>
+            </trans-unit>
+            <trans-unit id="title_page_not_found">
+                <source>title_page_not_found</source>
+                <target>404 - nie odnaleziono strony!</target>
+            </trans-unit>
+            <trans-unit id="title_profile">
+                <source>title_profile</source>
+                <target>Profil</target>
+            </trans-unit>
+            <trans-unit id="title_profile_edit">
+                <source>title_profile_edit</source>
+                <target>Edytuj profil - %email%</target>
+            </trans-unit>
+            <trans-unit id="title_register">
+                <source>title_register</source>
+                <target>Rejestracja</target>
+            </trans-unit>
+            <trans-unit id="title_user_list">
+                <source>title_user_list</source>
+                <target>Lista użytkowników</target>
+            </trans-unit>
             <trans-unit id="title_wallet">
                 <source>title_wallet</source>
                 <target>Twój portfel</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_create">
+                <source>title_wallet_create</source>
+                <target>Utwórz nowy portfel</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_delete">
+                <source>title_wallet_delete</source>
+                <target>Usunąć portfel "%name%"?</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_edit">
+                <source>title_wallet_edit</source>
+                <target>Edytuj portfel "%name%"</target>
+            </trans-unit>
+            <trans-unit id="title_wallet_details">
+                <source>title_wallet_details</source>
+                <target>Szczegóły Twojego portfela</target>
             </trans-unit>
             <trans-unit id="title_wallet_list">
                 <source>title_wallet_list</source>
