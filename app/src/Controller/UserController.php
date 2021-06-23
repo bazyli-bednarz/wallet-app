@@ -54,7 +54,7 @@ class UserController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
 
-        $pagination = $this->userService->createPagination($page, $this->getUser());
+        $pagination = $this->userService->createPagination($page);
 
         return $this->render(
             'security/index.html.twig',
