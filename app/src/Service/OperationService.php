@@ -29,10 +29,10 @@ class OperationService
     /**
      * OperationService constructor.
      * @param OperationRepository $operationRepository
-     * @param PaginatorInterface $paginator
-     * @param CategoryService $categoryService
-     * @param TagService $tagService
-     * @param WalletService $walletService
+     * @param PaginatorInterface  $paginator
+     * @param CategoryService     $categoryService
+     * @param TagService          $tagService
+     * @param WalletService       $walletService
      */
     public function __construct(OperationRepository $operationRepository, PaginatorInterface $paginator, CategoryService $categoryService, TagService $tagService, WalletService $walletService)
     {
@@ -46,8 +46,8 @@ class OperationService
     /**
      * Pagination.
      *
-     * @param int  $page
-     * @param User $user
+     * @param int   $page
+     * @param User  $user
      * @param array $filters
      *
      * @return PaginationInterface
@@ -89,6 +89,13 @@ class OperationService
         $this->operationRepository->delete($operation);
     }
 
+    /**
+     * Prepare filters.
+     *
+     * @param array $filters
+     *
+     * @return array
+     */
     private function prepareFilters(array $filters): array
     {
         $resultFilters = [];

@@ -57,7 +57,7 @@ class OperationFixtures extends AbstractBaseFixtures implements DependentFixture
 
             $tags = $this->getRandomReferences(
                 'tags',
-                $this->faker->numberBetween(0,5)
+                $this->faker->numberBetween(0, 5)
             );
             foreach ($tags as $tag) {
                 $operation->addTag($tag);

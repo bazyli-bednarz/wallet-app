@@ -95,6 +95,7 @@ class OperationRepository extends ServiceEntityRepository
             ->join('operation.wallet', 'wallet')
             ->leftJoin('operation.tags', 'tags')
             ->orderBy('operation.time', 'DESC');
+
         return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
@@ -113,7 +114,7 @@ class OperationRepository extends ServiceEntityRepository
     /**
      * Query by author.
      *
-     * @param User $user
+     * @param User  $user
      * @param array $filters
      *
      * @return QueryBuilder
@@ -127,6 +128,14 @@ class OperationRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
+    /**
+     * Apply to filters list.
+     *
+     * @param QueryBuilder $queryBuilder
+     * @param array        $filters
+     *
+     * @return QueryBuilder
+     */
     private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
     {
         if (isset($filters['category']) && $filters['category'] instanceof Category) {

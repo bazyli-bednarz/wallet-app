@@ -82,7 +82,7 @@ class CategoryService
      *
      * @return Category|null
      */
-    function findOneById(int $id): ?Category
+    public function findOneById(int $id): ?Category
     {
         return $this->categoryRepository->findOneById($id);
     }

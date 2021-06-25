@@ -15,8 +15,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class OperationVoter
- *
- * @package App\Security\Voter
  */
 class OperationVoter extends Voter
 {
